@@ -17,13 +17,24 @@ export default function Footer() {
             </p>
             <ul className="mt-3 space-y-2">
               {nav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-white/80 hover:text-gold"
-                  >
-                    {item.label}
-                  </Link>
+                <li key={item.href + item.label}>
+                  {item.external ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-white/80 hover:text-gold"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="text-sm text-white/80 hover:text-gold"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
               <li>

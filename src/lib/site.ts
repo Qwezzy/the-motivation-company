@@ -132,10 +132,25 @@ export const site = {
   ],
 } as const;
 
-export const nav = [
+/** Old-site IA order for SEO soft landing. About/Contact remain as deep links. */
+export const profilePdf = "/pdf/TMCCompanyProfile-2014.pdf";
+
+export type NavItem = {
+  href: string;
+  label: string;
+  /** Open in new tab (PDF / external) */
+  external?: boolean;
+};
+
+export const nav: readonly NavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/speakers", label: "Speakers" },
+  { href: "/our-speakers", label: "Our Speakers" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" },
+  { href: "/training", label: "Training" },
+  {
+    href: profilePdf,
+    label: "Download our Profile",
+    external: true,
+  },
 ] as const;

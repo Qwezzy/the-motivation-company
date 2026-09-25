@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { speakers } from "@/lib/site";
 
 type SpeakersGridProps = {
@@ -20,7 +21,7 @@ export default function SpeakersGrid({
         {!hideIntro && (
           <div className="mb-10 text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50">
-              Speakers
+              Our Speakers
             </p>
             <h2 className="mt-2 text-3xl font-semibold text-navy">
               SCAMP Graduates
@@ -29,6 +30,14 @@ export default function SpeakersGrid({
               A preview of voices shaped through SCAMP — mock layout for soft
               landing review only.
             </p>
+            {compact && (
+              <Link
+                href="/our-speakers"
+                className="mt-4 inline-flex text-sm font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-navy-light"
+              >
+                View Our Speakers →
+              </Link>
+            )}
           </div>
         )}
 

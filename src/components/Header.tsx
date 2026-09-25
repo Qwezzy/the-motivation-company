@@ -4,7 +4,36 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { images, nav, site } from "@/lib/site";
+import { images, nav, site, type NavItem } from "@/lib/site";
+
+function NavLink({
+  item,
+  onNavigate,
+  className,
+}: {
+  item: NavItem;
+  onNavigate?: () => void;
+  className: string;
+}) {
+  if (item.external) {
+    return (
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={onNavigate}
+        className={className}
+      >
+        {item.label}
+      </a>
+    );
+  }
+  return (
+    <Link href={item.href} onClick={onNavigate} className={className}>
+      {item.label}
+    </Link>
+  );
+}
 
 export default function Header() {
   const pathname = usePathname();
@@ -38,19 +67,17 @@ export default function Header() {
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
           {nav.map((item) => {
-            const active = pathname === item.href;
+            const active = !item.external && pathname === item.href;
             return (
-              <Link
-                key={item.href}
-                href={item.href}
+              <NavLink
+                key={item.href + item.label}
+                item={item}
                 className={`rounded-full px-3 py-2 text-sm font-medium transition ${
                   active
                     ? "bg-gold text-navy"
                     : "text-white/90 hover:bg-white/10 hover:text-gold"
                 }`}
-              >
-                {item.label}
-              </Link>
+              />
             );
           })}
         </nav>
@@ -111,18 +138,16 @@ export default function Header() {
         >
           <ul className="flex flex-col gap-1">
             {nav.map((item) => {
-              const active = pathname === item.href;
+              const active = !item.external && pathname === item.href;
               return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setOpen(false)}
+                <li key={item.href + item.label}>
+                  <NavLink
+                    item={item}
+                    onNavigate={() => setOpen(false)}
                     className={`block rounded-lg px-3 py-3 text-sm font-medium ${
                       active ? "bg-gold text-navy" : "text-white hover:bg-white/10"
                     }`}
-                  >
-                    {item.label}
-                  </Link>
+                  />
                 </li>
               );
             })}
