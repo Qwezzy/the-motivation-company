@@ -70,6 +70,64 @@ export default function ServicesPage() {
             ))}
           </div>
 
+          {/* Classic old-site catalogue — same navy/gold cards; no redesign */}
+          <div className="mt-16 border-t border-navy/10 pt-12">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-gold-dark">
+              Full catalogue
+            </p>
+            <h3 className="mt-3 text-center text-2xl font-semibold text-navy">
+              Services
+            </h3>
+            <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-navy/60">
+              Classic offerings from The Motivation Company — presentations,
+              seminars, workshops, and team building facilitation.
+            </p>
+
+            <div className="mt-8 grid gap-6 lg:grid-cols-2">
+              {site.classicServices.map((block) => (
+                <article
+                  key={block.title}
+                  className="flex flex-col rounded-2xl border border-navy/10 bg-slate-50 p-6"
+                >
+                  <h4 className="text-lg font-semibold text-navy">
+                    {block.title}
+                  </h4>
+                  {"blurb" in block && block.blurb ? (
+                    <p className="mt-3 text-sm leading-relaxed text-navy/70">
+                      {block.blurb}
+                    </p>
+                  ) : null}
+                  {"items" in block && block.items ? (
+                    <ul className="mt-4 space-y-1.5 text-sm text-navy/70">
+                      {block.items.map((item) => (
+                        <li key={item}>· {item}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {"facilitators" in block && block.facilitators ? (
+                    <p className="mt-4 text-sm font-medium text-navy">
+                      {block.facilitators}
+                    </p>
+                  ) : null}
+                  {"badge" in block && block.badge ? (
+                    <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-gold-dark">
+                      {block.badge}
+                    </p>
+                  ) : null}
+                  {"ctaHref" in block && block.ctaHref ? (
+                    <div className="mt-5">
+                      <a href={block.ctaHref} className="btn-primary">
+                        {"ctaLabel" in block && block.ctaLabel
+                          ? block.ctaLabel
+                          : "Enquire"}
+                      </a>
+                    </div>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+          </div>
+
           <p className="mt-10 text-center text-sm text-navy/60">
             Prefer the short path?{" "}
             <Link

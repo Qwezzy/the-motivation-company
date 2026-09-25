@@ -319,6 +319,47 @@ export const site = {
       blurb: "We read the room and elevate the message.",
     },
   ] as const,
+
+  /**
+   * Classic old-site Services catalogue (themotivationcompany.co.za).
+   * Kept alongside Energy/Synergy/Strategy so every legacy named line appears on /services.
+   */
+  classicServices: [
+    {
+      title: "Motivational Presentations",
+      items: [
+        "Induction/ Orientation Programmes",
+        "Conferences",
+        "Strategic Planning Getaways",
+        "Team building Getaways",
+        "Companywide In-house Road Shows",
+      ],
+    },
+    {
+      title: "Seminars",
+      blurb:
+        "The Motivation Company will be rolling out seminars around the country & SADC.",
+    },
+    {
+      title: "Workshops",
+      blurb:
+        "The Motivation Company is currently conducting workshops on various personal & staff development themes. Dates to be published on our Facebook & Twitter handle.",
+      items: [
+        "Spectacular Customer Service",
+        "Self-Discovery & Development",
+      ],
+      facilitators: "Workshop Facilitators: Hector Motivator & Tebogo Mothokoa",
+      badge: "*SETA Accredited",
+    },
+    {
+      title: "Team Building Facilitation",
+      blurb:
+        "The Motivation Company has an effective team building programme that can be ran from half day to 3 days. Please send your enquiry to bookings@themotivationcompany.co.za with your requirements and we will send you a tailor-made quote.",
+      ctaLabel: "Send team building enquiry",
+      ctaHref: "mailto:bookings@themotivationcompany.co.za?subject=Team%20Building%20Facilitation%20enquiry",
+    },
+  ] as const,
+
   offers: [
     {
       label: "Energy",
