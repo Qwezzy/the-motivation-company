@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { nav, site } from "@/lib/site";
+import { images, nav, site } from "@/lib/site";
 
 export default function Header() {
   const pathname = usePathname();
@@ -14,14 +15,24 @@ export default function Header() {
       <div className="container-narrow flex items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="group flex flex-col leading-tight"
+          className="group flex items-center gap-3"
           onClick={() => setOpen(false)}
         >
-          <span className="text-lg font-semibold tracking-tight text-gold sm:text-xl">
-            {site.company}
+          <span className="relative block h-9 w-[160px] sm:h-10 sm:w-[190px]">
+            <Image
+              src={images.logo}
+              alt={site.company}
+              fill
+              sizes="190px"
+              className="object-contain object-left"
+              priority
+            />
           </span>
-          <span className="text-[10px] uppercase tracking-[0.15em] text-white/70 sm:text-xs">
-            Presents {site.principal}
+          <span className="hidden flex-col leading-tight border-l border-white/20 pl-3 sm:flex">
+            <span className="text-[10px] uppercase tracking-[0.15em] text-white/70">
+              Presents
+            </span>
+            <span className="text-xs font-medium text-gold">{site.principal}</span>
           </span>
         </Link>
 
