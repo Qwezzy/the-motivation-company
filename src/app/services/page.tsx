@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
-import { site } from "@/lib/site";
+import { images, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -33,20 +34,31 @@ export default function ServicesPage() {
               <a
                 key={offer.label}
                 href={site.mathabe[offer.hrefKey]}
-                className="group flex flex-col rounded-2xl border border-navy/10 bg-slate-50 p-6 transition hover:border-gold hover:bg-white hover:shadow-md"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-navy/10 bg-slate-50 transition hover:border-gold hover:bg-white hover:shadow-md"
               >
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
-                  {offer.label}
-                </span>
-                <h2 className="mt-3 text-xl font-semibold text-navy">
-                  {offer.title}
-                </h2>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-navy/70">
-                  {offer.blurb}
-                </p>
-                <span className="mt-5 text-sm font-semibold text-navy">
-                  Open on Mathabe site →
-                </span>
+                <div className="relative aspect-[4/5] w-full bg-navy/5">
+                  <Image
+                    src={images[offer.imageKey]}
+                    alt={`${offer.title} — ${site.principal}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
+                    {offer.label}
+                  </span>
+                  <h2 className="mt-3 text-xl font-semibold text-navy">
+                    {offer.title}
+                  </h2>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-navy/70">
+                    {offer.blurb}
+                  </p>
+                  <span className="mt-5 text-sm font-semibold text-navy">
+                    Open on Mathabe site →
+                  </span>
+                </div>
               </a>
             ))}
           </div>

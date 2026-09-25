@@ -1,6 +1,29 @@
 const mathabeBase =
   process.env.NEXT_PUBLIC_MATHABE_SITE_URL?.replace(/\/$/, "") ||
-  "https://hectormathabe.com";
+  "https://hector-motivator.vercel.app";
+
+/** Soft-landing image slots → public paths (image pass). */
+export const images = {
+  logo: "/images/tmc-logo.webp",
+  hero: "/images/tmc-hero-top.webp",
+  principal: "/images/hector-about.webp",
+  speak: "/images/hector-speak.webp",
+  host: "/images/hector-mc.webp",
+  facilitate: "/images/hector-facilitate.webp",
+  bookVisual: "/images/hector-book.webp",
+  clients: "/images/hector-clients.webp",
+  gallery: [
+    "/images/tmc-gallery-01.webp",
+    "/images/tmc-gallery-02.webp",
+    "/images/tmc-gallery-03.webp",
+    "/images/tmc-gallery-04.webp",
+    "/images/tmc-gallery-05.webp",
+    "/images/tmc-gallery-06.webp",
+    "/images/tmc-gallery-07.webp",
+    "/images/tmc-gallery-09.webp",
+    "/images/tmc-gallery-10.webp",
+  ],
+} as const;
 
 export const site = {
   company: "The Motivation Company",
@@ -52,6 +75,7 @@ export const site = {
       blurb:
         "Keynotes and talks that leave teams aligned, energised, and ready to act.",
       hrefKey: "services" as const,
+      imageKey: "speak" as const,
     },
     {
       label: "Host",
@@ -59,6 +83,7 @@ export const site = {
       blurb:
         "Confident stage leadership that keeps your agenda flowing and your brand represented.",
       hrefKey: "mc" as const,
+      imageKey: "host" as const,
     },
     {
       label: "Facilitate",
@@ -66,6 +91,7 @@ export const site = {
       blurb:
         "Strategy sessions and team experiences grounded in the R.E.A.L. method.",
       hrefKey: "services" as const,
+      imageKey: "facilitate" as const,
     },
   ],
 } as const;

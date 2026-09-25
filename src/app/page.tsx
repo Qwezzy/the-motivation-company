@@ -1,13 +1,26 @@
+import Image from "next/image";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
+import GalleryStrip from "@/components/GalleryStrip";
 import RealStrip from "@/components/RealStrip";
-import { site } from "@/lib/site";
+import { images, site } from "@/lib/site";
 
 export default function HomePage() {
   return (
     <>
-      <section className="bg-navy text-white">
-        <div className="container-narrow section-pad">
+      <section className="relative overflow-hidden bg-navy text-white">
+        <div className="absolute inset-0" aria-hidden>
+          <Image
+            src={images.hero}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center opacity-35"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/70" />
+        </div>
+        <div className="container-narrow relative section-pad">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">
             Company soft landing
           </p>
@@ -35,28 +48,39 @@ export default function HomePage() {
 
       <section className="bg-white">
         <div className="container-narrow section-pad">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50">
-              Principal
-            </p>
-            <h2 className="mt-2 text-3xl font-semibold text-navy">
-              {site.principal}
-            </h2>
-            <p className="mt-1 text-sm font-medium text-gold-dark">
-              Also known as {site.principalAlsoKnownAs}
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-navy/75">
-              Motivational speaker, MC, and facilitator. {site.company} presents
-              Hector to organisations that need a trusted partner for elevated
-              events — while his personal site remains the place to book and
-              explore his work.
-            </p>
-            <a
-              href={site.mathabe.about}
-              className="mt-6 inline-flex text-sm font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-navy-light"
-            >
-              Meet Hector on his site →
-            </a>
+          <div className="mx-auto grid max-w-4xl items-center gap-10 md:grid-cols-2">
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl border-2 border-gold/40 bg-navy/5 shadow-xl">
+              <Image
+                src={images.principal}
+                alt={`${site.principal} — principal talent for ${site.company}`}
+                fill
+                sizes="320px"
+                className="object-cover object-top"
+              />
+            </div>
+            <div className="text-center md:text-left">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50">
+                Principal
+              </p>
+              <h2 className="mt-2 text-3xl font-semibold text-navy">
+                {site.principal}
+              </h2>
+              <p className="mt-1 text-sm font-medium text-gold-dark">
+                Also known as {site.principalAlsoKnownAs}
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-navy/75">
+                Motivational speaker, MC, and facilitator. {site.company} presents
+                Hector to organisations that need a trusted partner for elevated
+                events — while his personal site remains the place to book and
+                explore his work.
+              </p>
+              <a
+                href={site.mathabe.about}
+                className="mt-6 inline-flex text-sm font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-navy-light"
+              >
+                Meet Hector on his site →
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -80,26 +104,38 @@ export default function HomePage() {
               <a
                 key={offer.label}
                 href={site.mathabe[offer.hrefKey]}
-                className="group flex flex-col rounded-2xl border border-navy/10 bg-white p-6 shadow-sm transition hover:border-gold hover:shadow-md"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-navy/10 bg-white shadow-sm transition hover:border-gold hover:shadow-md"
               >
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
-                  {offer.label}
-                </span>
-                <h3 className="mt-3 text-xl font-semibold text-navy group-hover:text-navy-light">
-                  {offer.title}
-                </h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-navy/70">
-                  {offer.blurb}
-                </p>
-                <span className="mt-5 text-sm font-semibold text-navy">
-                  View on Mathabe site →
-                </span>
+                <div className="relative aspect-[4/5] w-full bg-navy/5">
+                  <Image
+                    src={images[offer.imageKey]}
+                    alt={`${offer.title} — ${site.principal}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover object-top transition duration-300 group-hover:scale-[1.02]"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
+                    {offer.label}
+                  </span>
+                  <h3 className="mt-3 text-xl font-semibold text-navy group-hover:text-navy-light">
+                    {offer.title}
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-navy/70">
+                    {offer.blurb}
+                  </p>
+                  <span className="mt-5 text-sm font-semibold text-navy">
+                    View on Mathabe site →
+                  </span>
+                </div>
               </a>
             ))}
           </div>
         </div>
       </section>
 
+      <GalleryStrip />
       <RealStrip />
       <CtaBanner />
     </>

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
-import { site } from "@/lib/site";
+import { images, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -27,62 +28,73 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-white">
-        <div className="container-narrow section-pad max-w-3xl">
-          <div className="prose prose-navy mx-auto space-y-6 text-base leading-relaxed text-navy/80">
-            <p>
-              <strong className="font-semibold text-navy">{site.company}</strong>{" "}
-              is the registered home for Hector Mathabe&apos;s professional
-              work. We handle bookings coordination, client trust, and the
-              operational side of delivering outstanding events.
-            </p>
-            <p>
-              {site.relationshipLine} His personal brand site is where you book
-              talks, MC / programme directing, and facilitation — and where you
-              learn more about his journey and approach.
-            </p>
-            <p>
-              This site stays intentionally thin: company identity, clear
-              contact paths, and a single doorway to book Hector. No speaker
-              roster sprawl, no competing brochure.
-            </p>
-            <dl className="mt-8 grid gap-4 rounded-2xl border border-navy/10 bg-slate-50 p-6 text-sm sm:grid-cols-2">
-              <div>
-                <dt className="font-semibold text-navy">Company registration</dt>
-                <dd className="mt-1 text-navy/70">{site.companyReg}</dd>
+        <div className="container-narrow section-pad">
+          <div className="mx-auto grid max-w-4xl items-start gap-10 md:grid-cols-5">
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl border-2 border-gold/40 bg-navy/5 shadow-xl md:col-span-2 md:mx-0">
+              <Image
+                src={images.principal}
+                alt={`${site.principal} presented by ${site.company}`}
+                fill
+                sizes="320px"
+                className="object-cover object-top"
+              />
+            </div>
+            <div className="prose prose-navy space-y-6 text-base leading-relaxed text-navy/80 md:col-span-3">
+              <p>
+                <strong className="font-semibold text-navy">{site.company}</strong>{" "}
+                is the registered home for Hector Mathabe&apos;s professional
+                work. We handle bookings coordination, client trust, and the
+                operational side of delivering outstanding events.
+              </p>
+              <p>
+                {site.relationshipLine} His personal brand site is where you book
+                talks, MC / programme directing, and facilitation — and where you
+                learn more about his journey and approach.
+              </p>
+              <p>
+                This site stays intentionally thin: company identity, clear
+                contact paths, and a single doorway to book Hector. No speaker
+                roster sprawl, no competing brochure.
+              </p>
+              <dl className="mt-8 grid gap-4 rounded-2xl border border-navy/10 bg-slate-50 p-6 text-sm sm:grid-cols-2">
+                <div>
+                  <dt className="font-semibold text-navy">Company registration</dt>
+                  <dd className="mt-1 text-navy/70">{site.companyReg}</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-navy">Bookings</dt>
+                  <dd className="mt-1">
+                    <a
+                      href={site.emailHref}
+                      className="break-all text-navy/70 hover:text-navy"
+                    >
+                      {site.email}
+                    </a>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-navy">Phone</dt>
+                  <dd className="mt-1">
+                    <a href={site.phoneHref} className="text-navy/70 hover:text-navy">
+                      {site.phone}
+                    </a>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-navy">Principal</dt>
+                  <dd className="mt-1 text-navy/70">
+                    {site.principal} ({site.principalAlsoKnownAs})
+                  </dd>
+                </div>
+              </dl>
+              <div className="flex flex-wrap gap-4 pt-2">
+                <a href={site.mathabe.about} className="btn-navy">
+                  Hector&apos;s About page
+                </a>
+                <Link href="/contact" className="btn-primary">
+                  Contact us
+                </Link>
               </div>
-              <div>
-                <dt className="font-semibold text-navy">Bookings</dt>
-                <dd className="mt-1">
-                  <a
-                    href={site.emailHref}
-                    className="break-all text-navy/70 hover:text-navy"
-                  >
-                    {site.email}
-                  </a>
-                </dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-navy">Phone</dt>
-                <dd className="mt-1">
-                  <a href={site.phoneHref} className="text-navy/70 hover:text-navy">
-                    {site.phone}
-                  </a>
-                </dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-navy">Principal</dt>
-                <dd className="mt-1 text-navy/70">
-                  {site.principal} ({site.principalAlsoKnownAs})
-                </dd>
-              </div>
-            </dl>
-            <div className="flex flex-wrap gap-4 pt-2">
-              <a href={site.mathabe.about} className="btn-navy">
-                Hector&apos;s About page
-              </a>
-              <Link href="/contact" className="btn-primary">
-                Contact us
-              </Link>
             </div>
           </div>
         </div>
