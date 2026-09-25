@@ -1,29 +1,66 @@
 import Image from "next/image";
-import { upcomingEvents, type UpcomingEvent } from "@/lib/site";
+import {
+  defaultEventTikTok,
+  upcomingEvents,
+  type UpcomingEvent,
+} from "@/lib/site";
 
-const DEFAULT_TIKTOK = "https://www.tiktok.com/@HectorMotivator";
+function BrandBlock({ title }: { title: string }) {
+  return (
+    <div
+      className="relative flex aspect-[4/5] w-full shrink-0 flex-col items-center justify-center gap-3 bg-navy px-6 text-center sm:aspect-auto sm:min-h-[14rem] sm:w-56 md:w-64"
+      aria-hidden
+    >
+      <div className="h-1 w-12 rounded-full bg-gold" />
+      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">
+        The Motivation Company
+      </p>
+      <p className="text-sm font-semibold leading-snug text-white">{title}</p>
+      <div className="h-1 w-12 rounded-full bg-gold" />
+    </div>
+  );
+}
 
 function EventCard({ event }: { event: UpcomingEvent }) {
-  const href = event.url || DEFAULT_TIKTOK;
+  const href = event.url || defaultEventTikTok;
   const cta = event.ctaLabel || "Watch on TikTok";
+  const dateDisplay = event.tbc ? "Date to be announced" : event.dateLabel;
+  const timeDisplay = event.tbc ? "—" : event.time;
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-2xl border border-navy/10 bg-white shadow-sm sm:flex-row">
-      <div className="relative aspect-[4/5] w-full shrink-0 bg-navy/5 sm:aspect-auto sm:w-56 md:w-64">
-        <Image
-          src={event.image}
-          alt={event.title}
-          fill
-          sizes="(max-width: 640px) 100vw, 256px"
-          className="object-cover object-top"
-        />
-      </div>
+    <article
+      className={`flex flex-col overflow-hidden rounded-2xl border bg-white shadow-sm sm:flex-row ${
+        event.tbc
+          ? "border-dashed border-navy/25 bg-slate-50/80"
+          : "border-navy/10"
+      }`}
+    >
+      {event.image ? (
+        <div className="relative aspect-[4/5] w-full shrink-0 bg-navy/5 sm:aspect-auto sm:w-56 md:w-64">
+          <Image
+            src={event.image}
+            alt={event.title}
+            fill
+            sizes="(max-width: 640px) 100vw, 256px"
+            className="object-cover object-top"
+          />
+        </div>
+      ) : (
+        <BrandBlock title={event.title} />
+      )}
       <div className="flex flex-1 flex-col p-6">
-        {event.subtitle && (
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
-            {event.subtitle}
-          </p>
-        )}
+        <div className="flex flex-wrap items-center gap-2">
+          {event.subtitle && (
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
+              {event.subtitle}
+            </p>
+          )}
+          {event.tbc && (
+            <span className="rounded-full border border-navy/20 bg-white px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-navy/70">
+              TBC
+            </span>
+          )}
+        </div>
         <h3 className="mt-2 text-xl font-semibold text-navy">{event.title}</h3>
         {event.tagline && (
           <p className="mt-1 text-sm font-medium text-navy/60">{event.tagline}</p>
@@ -33,13 +70,13 @@ function EventCard({ event }: { event: UpcomingEvent }) {
             <dt className="text-xs font-semibold uppercase tracking-wider text-navy/45">
               Date
             </dt>
-            <dd className="mt-0.5 font-medium text-navy">{event.dateLabel}</dd>
+            <dd className="mt-0.5 font-medium text-navy">{dateDisplay}</dd>
           </div>
           <div>
             <dt className="text-xs font-semibold uppercase tracking-wider text-navy/45">
               Time
             </dt>
-            <dd className="mt-0.5 font-medium text-navy">{event.time}</dd>
+            <dd className="mt-0.5 font-medium text-navy">{timeDisplay}</dd>
           </div>
           <div>
             <dt className="text-xs font-semibold uppercase tracking-wider text-navy/45">
@@ -47,9 +84,11 @@ function EventCard({ event }: { event: UpcomingEvent }) {
             </dt>
             <dd className="mt-0.5 font-medium text-navy">
               {event.platform}
-              <span className="ml-2 rounded-full bg-gold/30 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-navy">
-                Free
-              </span>
+              {!event.tbc && (
+                <span className="ml-2 rounded-full bg-gold/30 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-navy">
+                  Free
+                </span>
+              )}
             </dd>
           </div>
           {event.topic && (
@@ -81,11 +120,9 @@ function EventCard({ event }: { event: UpcomingEvent }) {
   );
 }
 
-/** Home strip — data-driven; hide if no upcoming events. */
+/** Home strip — data-driven; lists all current items (sorted in site.ts). */
 export default function UpcomingEvents() {
   if (upcomingEvents.length === 0) return null;
-
-  const shown = upcomingEvents.slice(0, 3);
 
   return (
     <section className="bg-white">
@@ -99,11 +136,11 @@ export default function UpcomingEvents() {
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-navy/65">
             Hub events that inspire, motivate, and empower — including free
-            sessions for educators and communities.
+            sessions for educators, men, and learners.
           </p>
         </div>
         <div className="mx-auto flex max-w-3xl flex-col gap-6">
-          {shown.map((event) => (
+          {upcomingEvents.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}
         </div>

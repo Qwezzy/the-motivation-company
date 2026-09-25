@@ -84,7 +84,8 @@ export type UpcomingEvent = {
   id: string;
   title: string;
   subtitle?: string;
-  dateISO: string;
+  /** ISO date YYYY-MM-DD for sort; omit or empty when tbc */
+  dateISO?: string;
   dateLabel: string;
   time: string;
   platform: string;
@@ -92,17 +93,24 @@ export type UpcomingEvent = {
   withHandle?: string;
   blurb: string;
   tagline?: string;
-  image: string;
+  /** Flyer path; omit for navy/gold brand-block placeholder (no fake flyer) */
+  image?: string;
   /** Live event / watch URL; defaults to TikTok handle if omitted */
   url?: string;
+  /** CTA label — default "Watch on TikTok" (swap to TMC TikTok later) */
   ctaLabel?: string;
+  /** Date TBD — shows "Date to be announced"; sorts after dated events */
+  tbc?: boolean;
 };
 
+/** Default watch channel for hub events (Hector for now; swap to TMC TikTok later). */
+export const defaultEventTikTok = "https://www.tiktok.com/@HectorMotivator";
+
 /**
- * Upcoming hub events (Home strip). Add entries here — 1–3 shown on Home.
- * Hector may headline; commercial primary CTA remains Book a Speaker.
+ * Upcoming hub events (Home strip). Data-driven — Home lists all current items
+ * sorted by date (TBC last). Hector may headline; commercial CTA stays Book a Speaker.
  */
-export const upcomingEvents: UpcomingEvent[] = [
+const upcomingEventsRaw: UpcomingEvent[] = [
   {
     id: "teachers-day-2026-tiktok",
     title: "National Teacher's Day & World Teacher's Day 2026",
@@ -117,10 +125,51 @@ export const upcomingEvents: UpcomingEvent[] = [
       "Today we celebrate the educators who teach, guide, uplift and shape a brighter tomorrow. FREE appreciation motivation for educators and teachers.",
     tagline: "Educators Build Nations",
     image: "/images/events/teachers-day-2026-tiktok.jpg",
-    url: "https://www.tiktok.com/@HectorMotivator",
+    url: defaultEventTikTok,
+    ctaLabel: "Watch on TikTok",
+  },
+  {
+    id: "mens-day-conference-2026",
+    title: "International Men's Day / National Men's Conference",
+    subtitle: "National + International Men's Day",
+    dateISO: "2026-11-19",
+    dateLabel: "19 November 2026",
+    time: "TBA",
+    platform: "TikTok",
+    topic: "National Men's Conference",
+    withHandle: "@HectorMotivator",
+    blurb: "Motivation for men — National Men's Conference",
+    tagline: "Motivation for men",
+    // No flyer — navy/gold brand block in UI
+    url: defaultEventTikTok,
+    ctaLabel: "Watch on TikTok",
+  },
+  {
+    id: "matric-prelims-motivation-2026",
+    title: "Matric prelims motivation",
+    subtitle: "Learners · prelims pipeline",
+    dateLabel: "Date to be announced",
+    time: "TBA",
+    platform: "TikTok",
+    withHandle: "@HectorMotivator",
+    blurb:
+      "Planned motivational session for learners writing matric prelims. Date and details to be announced.",
+    tagline: "Motivation for matric learners",
+    tbc: true,
+    url: defaultEventTikTok,
     ctaLabel: "Watch on TikTok",
   },
 ];
+
+/** Sorted: dated ascending, then TBC. */
+export const upcomingEvents: UpcomingEvent[] = [...upcomingEventsRaw].sort(
+  (a, b) => {
+    if (a.tbc && !b.tbc) return 1;
+    if (!a.tbc && b.tbc) return -1;
+    if (a.tbc && b.tbc) return a.title.localeCompare(b.title);
+    return (a.dateISO || "").localeCompare(b.dateISO || "");
+  },
+);
 
 
 export const site = {
