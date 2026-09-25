@@ -28,6 +28,15 @@ export const images = {
     "/images/tmc-gallery-09.webp",
     "/images/tmc-gallery-10.webp",
   ],
+  /** Home proof strip only — curated stage/event shots; not a gallery tease. Skip 08 (wrong person). */
+  proof: [
+    "/images/tmc-speak.webp",
+    "/images/tmc-host.webp",
+    "/images/tmc-facilitate.webp",
+    "/images/tmc-gallery-01.webp",
+    "/images/tmc-gallery-03.webp",
+    "/images/tmc-gallery-07.webp",
+  ],
 } as const;
 
 /**
@@ -76,6 +85,8 @@ export const site = {
   companyReg: "2013/049231/07",
   tagline: "Elevating Events. Inspiring Audiences.",
   vision: "Ultimate Motivation Hub in South Africa and Beyond",
+  mission:
+    "Our daily mission is to advocate the importance of continuous motivation and personal development for the purpose of achieving greater results on a personal and business capacity.",
   principal: "Hector Mathabe",
   principalAlsoKnownAs: "Hector Motivator",
   relationshipLine:
@@ -93,6 +104,107 @@ export const site = {
     services: `${mathabeBase}/services`,
     mc: `${mathabeBase}/mc`,
   },
+  values: [
+    {
+      name: "Practicality",
+      blurb:
+        "We empower audiences with practical tools that are simple yet effective.",
+    },
+    {
+      name: "Sustainability",
+      blurb:
+        "Motivation must be refilled regularly — we build habits that keep the tank full.",
+    },
+    {
+      name: "Measurability",
+      blurb:
+        "We obsess over measuring the effectiveness of talks, teambuilding, and consulting.",
+    },
+    {
+      name: "Psychologically Sound",
+      blurb:
+        "Professional psychologists help shape our products and interventions.",
+    },
+    {
+      name: "Spiritually Sound",
+      blurb:
+        "We recognise spiritual depth as invaluable to high-impact motivation.",
+    },
+    {
+      name: "Smile",
+      blurb:
+        "Humour and a culture of smiling are held in high regard on every stage.",
+    },
+  ] as const,
+  serviceModel: [
+    {
+      label: "Energy",
+      title: "Motivational Talks",
+      blurb:
+        "Keynotes and talks tailored through pre-presentation analysis of your dynamics and needs.",
+      topics: [
+        "Self-discovery",
+        "Personal Development",
+        "Workplace Relations",
+        "Change",
+        "Excellence",
+        "Teamwork",
+      ],
+    },
+    {
+      label: "Synergy",
+      title: "Team Building",
+      blurb:
+        "Situation-specific teambuilding talks or facilitated sessions that strengthen spirit and dynamics.",
+      topics: [
+        "Personality traits",
+        "Team dynamics",
+        "Collage exercise for team vision",
+        "In-house & outdoor exercises",
+        "Team motivation",
+      ],
+    },
+    {
+      label: "Strategy",
+      title: "Strategic Planning Facilitation",
+      blurb:
+        "Experienced facilitators who help organisations review or craft strategy with depth.",
+      topics: [
+        "Comprehensive strategy",
+        "Strategic review",
+        "Mid-term strategy review",
+        "Operational plans",
+      ],
+    },
+  ] as const,
+  otherServices: [
+    {
+      title: "Motivational Programme Director / MC",
+      blurb:
+        "Speakers who run functions smoothly with a motivational flavour while keeping the occasion vibrant.",
+    },
+    {
+      title: "Presentation Skills Coaching",
+      blurb:
+        "Group or one-on-one coaching — an essential skill for career advancement.",
+    },
+    {
+      title: "Customer Service Consulting",
+      blurb:
+        "High-impact customer-service presentations and training that unite teams in service.",
+    },
+    {
+      title: "Youth Life Skills Programme",
+      blurb:
+        "Positive lifestyle, know your country, career pathing, and related life-skills modules.",
+    },
+    {
+      title: "Employee Appreciation Programme",
+      blurb:
+        "Appreciation experiences that include massage, meditation, and yoga.",
+    },
+  ] as const,
+  /** Kept for Services page deep links / legacy Real strip if reused. */
   real: [
     {
       letter: "R",
@@ -121,7 +233,7 @@ export const site = {
       title: "Motivational speaking",
       blurb:
         "Keynotes and talks on self-discovery, change, excellence, and teamwork that leave audiences ready to act.",
-      href: "/our-speakers",
+      href: "/services",
       imageKey: "speak" as const,
     },
     {

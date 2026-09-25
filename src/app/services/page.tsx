@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
-import { bookSpeakerHref, images, site } from "@/lib/site";
+import { bookSpeakerHref, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -30,46 +29,47 @@ export default function ServicesPage() {
 
       <section className="bg-white">
         <div className="container-narrow section-pad">
-          <div className="grid gap-6 md:grid-cols-3">
-            {site.offers.map((offer) => (
-              <Link
-                key={offer.label}
-                href={offer.href}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-navy/10 bg-slate-50 transition hover:border-gold hover:bg-white hover:shadow-md"
+          <div className="grid gap-6 lg:grid-cols-3">
+            {site.serviceModel.map((pillar) => (
+              <article
+                key={pillar.label}
+                className="flex flex-col rounded-2xl border border-navy/10 bg-slate-50 p-6"
               >
-                <div className="relative aspect-[4/5] w-full bg-navy/5">
-                  <Image
-                    src={images[offer.imageKey]}
-                    alt={offer.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover object-top"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
-                    {offer.label}
-                  </span>
-                  <h2 className="mt-3 text-xl font-semibold text-navy">
-                    {offer.title}
-                  </h2>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-navy/70">
-                    {offer.blurb}
-                  </p>
-                  <span className="mt-5 text-sm font-semibold text-navy">
-                    Explore →
-                  </span>
-                </div>
-              </Link>
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
+                  {pillar.label}
+                </span>
+                <h2 className="mt-3 text-xl font-semibold text-navy">
+                  {pillar.title}
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-navy/70">
+                  {pillar.blurb}
+                </p>
+                <ul className="mt-4 space-y-1 text-sm text-navy/70">
+                  {pillar.topics.map((topic) => (
+                    <li key={topic}>· {topic}</li>
+                  ))}
+                </ul>
+              </article>
             ))}
           </div>
-          <ul className="mx-auto mt-12 max-w-2xl space-y-2 text-sm text-navy/70">
-            <li>
-              <strong className="text-navy">Also available:</strong> Motivational
-              programme director / MC · Presentation skills coaching · Customer
-              service consulting · Youth life skills programme
-            </li>
-          </ul>
+
+          <h3 className="mt-12 text-center text-lg font-semibold text-navy">
+            Also available
+          </h3>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {site.otherServices.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-navy/10 bg-white p-5"
+              >
+                <h4 className="text-sm font-semibold text-navy">{item.title}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-navy/70">
+                  {item.blurb}
+                </p>
+              </div>
+            ))}
+          </div>
+
           <p className="mt-10 text-center text-sm text-navy/60">
             Prefer the short path?{" "}
             <Link
@@ -77,13 +77,6 @@ export default function ServicesPage() {
               className="font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4"
             >
               Book a Speaker
-            </Link>{" "}
-            or{" "}
-            <Link
-              href="/our-speakers"
-              className="font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4"
-            >
-              browse Our Speakers
             </Link>
             .
           </p>
