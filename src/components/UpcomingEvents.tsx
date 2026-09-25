@@ -8,7 +8,7 @@ import {
 function BrandBlock({ title }: { title: string }) {
   return (
     <div
-      className="relative flex aspect-[4/5] w-full shrink-0 flex-col items-center justify-center gap-3 bg-navy px-6 text-center sm:aspect-auto sm:min-h-[14rem] sm:w-56 md:w-64"
+      className="relative flex aspect-[4/5] w-full shrink-0 flex-col items-center justify-center gap-3 bg-navy px-6 text-center"
       aria-hidden
     >
       <div className="h-1 w-12 rounded-full bg-gold" />
@@ -29,26 +29,26 @@ function EventCard({ event }: { event: UpcomingEvent }) {
 
   return (
     <article
-      className={`flex flex-col overflow-hidden rounded-2xl border bg-white shadow-sm sm:flex-row ${
+      className={`flex min-w-0 flex-col overflow-hidden rounded-2xl border bg-white shadow-sm ${
         event.tbc
           ? "border-dashed border-navy/25 bg-slate-50/80"
           : "border-navy/10"
       }`}
     >
       {event.image ? (
-        <div className="relative aspect-[4/5] w-full shrink-0 bg-navy/5 sm:aspect-auto sm:w-56 md:w-64">
+        <div className="relative aspect-[4/5] w-full shrink-0 bg-navy/5">
           <Image
             src={event.image}
             alt={event.title}
             fill
-            sizes="(max-width: 640px) 100vw, 256px"
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover object-top"
           />
         </div>
       ) : (
         <BrandBlock title={event.title} />
       )}
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="flex flex-wrap items-center gap-2">
           {event.subtitle && (
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
@@ -65,7 +65,7 @@ function EventCard({ event }: { event: UpcomingEvent }) {
         {event.tagline && (
           <p className="mt-1 text-sm font-medium text-navy/60">{event.tagline}</p>
         )}
-        <dl className="mt-4 grid gap-2 text-sm text-navy/80 sm:grid-cols-2">
+        <dl className="mt-4 grid gap-2 text-sm text-navy/80">
           <div>
             <dt className="text-xs font-semibold uppercase tracking-wider text-navy/45">
               Date
@@ -107,14 +107,16 @@ function EventCard({ event }: { event: UpcomingEvent }) {
             <span className="font-semibold text-navy">{event.withHandle}</span>
           </p>
         )}
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primary mt-6 inline-flex self-start !py-2 !text-xs"
-        >
-          {cta}
-        </a>
+        <div className="mt-auto pt-6">
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary inline-flex self-start !py-2 !text-xs"
+          >
+            {cta}
+          </a>
+        </div>
       </div>
     </article>
   );
@@ -139,7 +141,7 @@ export default function UpcomingEvents() {
             sessions for educators, men, and learners.
           </p>
         </div>
-        <div className="mx-auto flex max-w-3xl flex-col gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {upcomingEvents.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}
