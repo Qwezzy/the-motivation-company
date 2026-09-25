@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
+import UpcomingEvents from "@/components/UpcomingEvents";
 import { bookSpeakerHref, images, profilePdf, site } from "@/lib/site";
 
 export default function HomePage() {
@@ -206,7 +207,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Proof strip — curated only; NOT Gallery */}
+      {/* 5. Upcoming Events — hub promotes; Hector may headline */}
+      <UpcomingEvents />
+
+      {/* 6. Proof strip — curated only; NOT Gallery */}
       <section className="bg-slate-50">
         <div className="container-narrow section-pad !py-14">
           <div className="mb-8 text-center">
@@ -244,7 +248,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Book a Speaker CTA */}
+      {/* 7. Book a Speaker CTA */}
       <CtaBanner />
     </>
   );

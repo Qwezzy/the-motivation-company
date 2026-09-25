@@ -80,6 +80,49 @@ export const profilePdf = "/pdf/TMC-Company-Profile.pdf";
  */
 export const bookSpeakerHref = "/contact";
 
+export type UpcomingEvent = {
+  id: string;
+  title: string;
+  subtitle?: string;
+  dateISO: string;
+  dateLabel: string;
+  time: string;
+  platform: string;
+  topic?: string;
+  withHandle?: string;
+  blurb: string;
+  tagline?: string;
+  image: string;
+  /** Live event / watch URL; defaults to TikTok handle if omitted */
+  url?: string;
+  ctaLabel?: string;
+};
+
+/**
+ * Upcoming hub events (Home strip). Add entries here — 1–3 shown on Home.
+ * Hector may headline; commercial primary CTA remains Book a Speaker.
+ */
+export const upcomingEvents: UpcomingEvent[] = [
+  {
+    id: "teachers-day-2026-tiktok",
+    title: "National Teacher's Day & World Teacher's Day 2026",
+    subtitle: "INSPIRE · MOTIVATE · EMPOWER",
+    dateISO: "2026-10-05",
+    dateLabel: "05 October 2026",
+    time: "6PM",
+    platform: "TikTok",
+    topic: "#BeYourBest",
+    withHandle: "@HectorMotivator",
+    blurb:
+      "Today we celebrate the educators who teach, guide, uplift and shape a brighter tomorrow. FREE appreciation motivation for educators and teachers.",
+    tagline: "Educators Build Nations",
+    image: "/images/events/teachers-day-2026-tiktok.jpg",
+    url: "https://www.tiktok.com/@HectorMotivator",
+    ctaLabel: "Watch on TikTok",
+  },
+];
+
+
 export const site = {
   company: "The Motivation Company",
   companyReg: "2013/049231/07",
