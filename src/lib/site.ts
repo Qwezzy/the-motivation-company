@@ -37,6 +37,12 @@ export const images = {
     "/images/tmc-gallery-03.webp",
     "/images/tmc-gallery-07.webp",
   ],
+  /** Training page bottom strip — old-site motivation-company-7/8/9 */
+  trainingStrip: [
+    "/images/tmc-mc-7.webp",
+    "/images/tmc-mc-8.webp",
+    "/images/tmc-mc-9.webp",
+  ],
 } as const;
 
 /**
@@ -357,6 +363,49 @@ export const site = {
         "The Motivation Company has an effective team building programme that can be ran from half day to 3 days. Please send your enquiry to bookings@themotivationcompany.co.za with your requirements and we will send you a tailor-made quote.",
       ctaLabel: "Send team building enquiry",
       ctaHref: "mailto:bookings@themotivationcompany.co.za?subject=Team%20Building%20Facilitation%20enquiry",
+    },
+  ] as const,
+
+
+  /**
+   * Effective Public Speaking Course modules — Seeker titles + blurbs (exact).
+   * No SETA / SCAMP stamps. No Tebogo on Training cards pending confirm.
+   */
+  trainingModules: [
+    {
+      title: "Effective Public Speaking Course",
+      blurb:
+        "Build confidence and clarity for boardrooms, conferences, and team forums. This course walks delegates through the full presentation toolkit — from how you show up to how you structure and deliver a message that lands.",
+    },
+    {
+      title: "Confirm Your Personality Style",
+      blurb:
+        "Understand how you naturally communicate under pressure — and how different audiences hear you. Delegates map their style so they can adapt tone, pace, and presence without losing authenticity.",
+    },
+    {
+      title: "Mesmerising Vocal Quality",
+      blurb:
+        "Train voice for projection, pace, pause, and emphasis so your message carries in large rooms and on mic. Practical drills help speakers sound clear, warm, and intentional — not flat or rushed.",
+    },
+    {
+      title: "Effective Body Language",
+      blurb:
+        "Align posture, gesture, eye contact, and stage use with what you are saying. Delegates practice open, credible presence that supports the message instead of distracting from it.",
+    },
+    {
+      title: "Powerful PowerPoint Slides",
+      blurb:
+        "Design slides that support the speaker — not compete with them. Focus on clean layout, one idea per slide, and visuals that help SA corporate audiences follow and remember the point.",
+    },
+    {
+      title: "Presentation Structure",
+      blurb:
+        "Open with purpose, build a clear arc, and close with a call to action. Delegates learn a simple structure they can reuse for pitches, reports, and motivational or training sessions.",
+    },
+    {
+      title: "Successful Presentation Secrets",
+      blurb:
+        "Pull the skills together: preparation, rehearsal, handling nerves, and reading the room. Practical habits that turn a rehearsed talk into a confident, audience-centred delivery.",
     },
   ] as const,
 

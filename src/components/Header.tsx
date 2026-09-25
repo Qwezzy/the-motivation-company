@@ -48,21 +48,15 @@ export default function Header() {
           onClick={() => setOpen(false)}
         >
           {/* Logo as-is on white chrome — no plate/chip; old-site tmc-logo.webp */}
-          <span className="relative block h-9 w-[160px] shrink-0 sm:h-10 sm:w-[190px]">
+          <span className="relative block h-11 w-[180px] shrink-0 sm:h-12 sm:w-[210px] lg:h-[3.25rem] lg:w-[220px]">
             <Image
               src={images.logo}
               alt={site.company}
               fill
-              sizes="190px"
+              sizes="220px"
               className="object-contain object-left"
               priority
             />
-          </span>
-          <span className="hidden flex-col leading-tight border-l border-navy/20 pl-3 sm:flex">
-            <span className="text-[10px] uppercase tracking-[0.15em] text-navy/55">
-              Presents
-            </span>
-            <span className="text-xs font-medium text-gold">{site.principal}</span>
           </span>
         </Link>
 
