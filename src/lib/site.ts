@@ -29,6 +29,38 @@ export const images = {
   ],
 } as const;
 
+/**
+ * Speakers mock (4-card SCAMP graduate grid).
+ * Press/org portraits = mock only; commercial use needs permission.
+ * Attribution lives in PR description — do not claim image rights.
+ */
+export const speakers = [
+  {
+    name: "Masingita Masunga",
+    role: "SCAMP graduate",
+    image: "/images/speakers/masingita-masunga.webp",
+    attribution: "Flow Communications",
+  },
+  {
+    name: "Demore Pretorius",
+    role: "SCAMP graduate",
+    image: "/images/speakers/demore-pretorius.webp",
+    attribution: "National Citizen",
+  },
+  {
+    name: "Ndumi Hadebe",
+    role: "SCAMP graduate",
+    image: "/images/speakers/ndumi-hadebe.webp",
+    attribution: "Moonstone",
+  },
+  {
+    name: 'Metsantika Seopela ("Santi")',
+    role: "SCAMP graduate",
+    image: "/images/speakers/metsantika-seopela.webp",
+    attribution: "DPSA The Public Servant",
+  },
+] as const;
+
 export const site = {
   company: "The Motivation Company",
   companyReg: "2013/049231/07",
@@ -103,6 +135,7 @@ export const site = {
 export const nav = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/speakers", label: "Speakers" },
   { href: "/services", label: "Services" },
   { href: "/contact", label: "Contact" },
 ] as const;

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
 import GalleryStrip from "@/components/GalleryStrip";
+import SpeakersGrid from "@/components/SpeakersGrid";
 import RealStrip from "@/components/RealStrip";
 import { images, site } from "@/lib/site";
 
@@ -135,6 +136,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <SpeakersGrid compact />
       <GalleryStrip />
       <RealStrip />
       <CtaBanner />
