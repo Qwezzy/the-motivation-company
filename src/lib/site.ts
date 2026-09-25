@@ -4,14 +4,15 @@ const mathabeBase =
 
 /**
  * Soft-landing image slots → public paths.
- * Source of truth: themotivationcompany.co.za/images/ only.
- * Do NOT wire Hector Motivator personal-site assets (hector-speak, hector-mc,
- * hector-facilitate, hector-about, hector-hero, DSC_*, client portraits, etc.).
+ * Default source: themotivationcompany.co.za/images/ (old-site gallery).
+ * EXCEPTION — principal: approved Hector Mathabe face from hector-motivator
+ * (DSC_6860 → public/images/hector-hero-a.webp). Do NOT use old gallery 08
+ * (wrong person). Other slots stay old-site only.
  */
 export const images = {
   logo: "/images/tmc-logo.webp", // old: logo.jpg
   hero: "/images/tmc-hero-top.webp", // old: top-image.jpg
-  principal: "/images/tmc-principal.webp", // old: gallery/large/08.jpg
+  principal: "/images/tmc-principal.webp", // hector-motivator hector-hero-a.webp (DSC_6860)
   speak: "/images/tmc-speak.webp", // old: gallery/large/04.jpg (4:5 crop)
   host: "/images/tmc-host.webp", // old: gallery/large/09.jpg
   facilitate: "/images/tmc-facilitate.webp", // old: gallery/large/07.jpg
