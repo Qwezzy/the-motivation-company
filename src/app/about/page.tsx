@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
-import { images, site } from "@/lib/site";
+import { bookSpeakerHref, images, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${site.company} — the company that presents Hector Mathabe.`,
+  description: `About ${site.company} — the Ultimate Motivation Hub in South Africa and Beyond.`,
 };
 
 export default function AboutPage() {
@@ -21,8 +21,9 @@ export default function AboutPage() {
             {site.company}
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/80">
-            A focused company face for legal, operations, and trust — presenting{" "}
-            {site.principal}.
+            Vision: {site.vision}. A company face for legal, operations, and
+            trust — presenting a roster of speakers with {site.principal} as
+            Principal.
           </p>
         </div>
       </section>
@@ -33,7 +34,7 @@ export default function AboutPage() {
             <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl border-2 border-gold/40 bg-navy/5 shadow-xl md:col-span-2 md:mx-0">
               <Image
                 src={images.principal}
-                alt={`${site.principal} presented by ${site.company}`}
+                alt={`${site.principal} — Principal of ${site.company}`}
                 fill
                 sizes="320px"
                 className="object-cover object-top"
@@ -42,19 +43,20 @@ export default function AboutPage() {
             <div className="prose prose-navy space-y-6 text-base leading-relaxed text-navy/80 md:col-span-3">
               <p>
                 <strong className="font-semibold text-navy">{site.company}</strong>{" "}
-                is the registered home for Hector Mathabe&apos;s professional
-                work. We handle bookings coordination, client trust, and the
-                operational side of delivering outstanding events.
+                is the registered home for motivation training and speaker
+                delivery. We handle bookings coordination, client trust, and the
+                operational side of delivering outstanding events across Energy,
+                Synergy, and Strategy.
               </p>
               <p>
-                {site.relationshipLine} His personal brand site is where you book
-                talks, MC / programme directing, and facilitation — and where you
-                learn more about his journey and approach.
+                {site.relationshipLine} Hector remains Principal and featured —
+                his personal brand site is a secondary doorway to meet him; hub
+                bookings and roster matching happen here.
               </p>
               <p>
-                This site stays intentionally thin: company identity, clear
-                contact paths, and a single doorway to book Hector. No speaker
-                roster sprawl, no competing brochure.
+                This soft landing keeps company identity, clear contact paths,
+                and a doorway to book a speaker from our roster — including
+                SCAMP graduates and specialist facilitators.
               </p>
               <dl className="mt-8 grid gap-4 rounded-2xl border border-navy/10 bg-slate-50 p-6 text-sm sm:grid-cols-2">
                 <div>
@@ -88,12 +90,12 @@ export default function AboutPage() {
                 </div>
               </dl>
               <div className="flex flex-wrap gap-4 pt-2">
-                <a href={site.mathabe.about} className="btn-navy">
-                  Hector&apos;s About page
-                </a>
-                <Link href="/contact" className="btn-primary">
-                  Contact us
+                <Link href={bookSpeakerHref} className="btn-primary">
+                  Book a Speaker
                 </Link>
+                <a href={site.mathabe.home} className="btn-navy">
+                  Meet Hector Mathabe
+                </a>
               </div>
             </div>
           </div>

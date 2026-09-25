@@ -14,11 +14,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.themotivationcompany.co.za"),
   title: {
-    default: `${site.company} | Soft landing`,
+    default: `${site.company} | Motivation Hub`,
     template: `%s | ${site.company}`,
   },
   description:
-    "The Motivation Company delivers and presents Hector Mathabe (Hector Motivator) — motivational speaking, MC, and facilitation. Company face for legal, ops, and trust.",
+    "The Motivation Company — Ultimate Motivation Hub in South Africa and Beyond. Book a speaker for keynotes, MC, facilitation, and training. Hector Mathabe is Principal.",
   openGraph: {
     title: site.company,
     description: site.tagline,

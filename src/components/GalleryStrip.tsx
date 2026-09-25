@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { images, site } from "@/lib/site";
 
 export default function GalleryStrip() {
@@ -15,6 +16,12 @@ export default function GalleryStrip() {
           <p className="mx-auto mt-3 max-w-xl text-sm text-navy/65">
             Stage and audience moments from {site.company} engagements.
           </p>
+          <Link
+            href="/gallery"
+            className="mt-4 inline-flex text-sm font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-navy-light"
+          >
+            View Gallery →
+          </Link>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {images.gallery.map((src, i) => (

@@ -1,4 +1,5 @@
-import { site } from "@/lib/site";
+import Link from "next/link";
+import { bookSpeakerHref, site } from "@/lib/site";
 
 type Props = {
   title?: string;
@@ -6,8 +7,8 @@ type Props = {
 };
 
 export default function CtaBanner({
-  title = "Ready to book Hector?",
-  blurb = "Bookings and event enquiries are handled on the Hector Mathabe site — or reach us directly.",
+  title = "Ready to book a speaker?",
+  blurb = "Enquiry for keynotes, MC, facilitation, or training — we match the right voice from our roster to your brief.",
 }: Props) {
   return (
     <section className="bg-navy text-white">
@@ -29,9 +30,9 @@ export default function CtaBanner({
             </div>
           </div>
           <div className="flex flex-shrink-0 flex-col gap-3 sm:flex-row">
-            <a href={site.mathabe.book} className="btn-primary">
-              Book Hector
-            </a>
+            <Link href={bookSpeakerHref} className="btn-primary">
+              Book a Speaker
+            </Link>
             <a href={site.emailHref} className="btn-secondary">
               Email bookings
             </a>

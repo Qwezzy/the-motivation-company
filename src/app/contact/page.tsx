@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: `Contact ${site.company} — book Hector or email bookings.`,
+  title: "Book a Speaker",
+  description: `Book a speaker with ${site.company} — enquiry for keynotes, MC, facilitation, and training.`,
 };
 
 export default function ContactPage() {
@@ -12,14 +13,15 @@ export default function ContactPage() {
       <section className="bg-navy text-white">
         <div className="container-narrow section-pad !py-16">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">
-            Contact
+            Book a Speaker
           </p>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
             Get in touch
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/80">
-            One clear path to book Hector — plus direct company contact for
-            enquiries.
+            Tell us about your event or training brief — we match the right
+            speaker from our roster. Hector Mathabe remains Principal and
+            featured; enquiries go through the company.
           </p>
         </div>
       </section>
@@ -31,13 +33,14 @@ export default function ContactPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
                 Primary
               </p>
-              <h2 className="mt-3 text-2xl font-semibold">Book Hector</h2>
+              <h2 className="mt-3 text-2xl font-semibold">Book a Speaker</h2>
               <p className="mt-3 text-sm leading-relaxed text-white/75">
-                Event bookings and programme enquiries are handled on the Hector
-                Mathabe site.
+                Email bookings with your date, audience, and preferred format
+                (keynote, MC, facilitation, or training). We will respond with
+                availability and the best-fit speaker.
               </p>
-              <a href={site.mathabe.book} className="btn-primary mt-6">
-                Go to Book page
+              <a href={site.emailHref} className="btn-primary mt-6">
+                Email {site.email}
               </a>
             </div>
 
@@ -80,9 +83,18 @@ export default function ContactPage() {
                   </span>
                 </li>
               </ul>
-              <a href={site.emailHref} className="btn-navy mt-8">
-                Email bookings
-              </a>
+              <Link href="/our-speakers" className="btn-navy mt-8">
+                Browse Our Speakers
+              </Link>
+              <p className="mt-6 text-sm text-navy/60">
+                Looking for Hector specifically?{" "}
+                <a
+                  href={site.mathabe.home}
+                  className="font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4"
+                >
+                  Meet Hector Mathabe
+                </a>
+              </p>
             </div>
           </div>
         </div>
