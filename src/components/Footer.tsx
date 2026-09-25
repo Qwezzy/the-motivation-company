@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { nav, site } from "@/lib/site";
+import { bookSpeakerHref, nav, site } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -38,12 +38,12 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <a
-                  href={site.mathabe.book}
+                <Link
+                  href={bookSpeakerHref}
                   className="text-sm text-white/80 hover:text-gold"
                 >
-                  Book Hector
-                </a>
+                  Book a Speaker
+                </Link>
               </li>
             </ul>
           </div>

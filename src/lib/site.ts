@@ -62,14 +62,24 @@ export const speakers = [
   },
 ] as const;
 
+/** Company profile PDF (Khwezi 2026 refresh — replaces 2014). */
+export const profilePdf = "/pdf/TMC-Company-Profile.pdf";
+
+/**
+ * Primary Book a Speaker destination — on-site enquiry (not Hector /book).
+ * Contact page + mailto remain the booking path for the hub roster.
+ */
+export const bookSpeakerHref = "/contact";
+
 export const site = {
   company: "The Motivation Company",
   companyReg: "2013/049231/07",
   tagline: "Elevating Events. Inspiring Audiences.",
+  vision: "Ultimate Motivation Hub in South Africa and Beyond",
   principal: "Hector Mathabe",
   principalAlsoKnownAs: "Hector Motivator",
   relationshipLine:
-    "We deliver and present Hector Mathabe — also known as Hector Motivator.",
+    "South Africa's motivation training hub — a roster of speakers and facilitators, with Hector Mathabe as Principal.",
   phone: "082 060 9888",
   phoneHref: "tel:+27820609888",
   email: "bookings@themotivationcompany.co.za",
@@ -102,40 +112,38 @@ export const site = {
     {
       letter: "L",
       word: "Listening",
-      blurb: "He reads the room and elevates the message.",
+      blurb: "We read the room and elevate the message.",
     },
   ] as const,
   offers: [
     {
-      label: "Speak",
+      label: "Energy",
       title: "Motivational speaking",
       blurb:
-        "Keynotes and talks that leave teams aligned, energised, and ready to act.",
-      hrefKey: "services" as const,
+        "Keynotes and talks on self-discovery, change, excellence, and teamwork that leave audiences ready to act.",
+      href: "/our-speakers",
       imageKey: "speak" as const,
     },
     {
-      label: "Host",
-      title: "MC & programme directing",
+      label: "Synergy",
+      title: "Team building & facilitation",
       blurb:
-        "Confident stage leadership that keeps your agenda flowing and your brand represented.",
-      hrefKey: "mc" as const,
-      imageKey: "host" as const,
+        "Situation-specific teambuilding talks and facilitated sessions that strengthen dynamics and spirit.",
+      href: "/services",
+      imageKey: "facilitate" as const,
     },
     {
-      label: "Facilitate",
-      title: "Facilitation & workshops",
+      label: "Strategy",
+      title: "Strategic planning & MC",
       blurb:
-        "Strategy sessions and team experiences grounded in the R.E.A.L. method.",
-      hrefKey: "services" as const,
-      imageKey: "facilitate" as const,
+        "Strategy facilitation, programme directing, presentation coaching, and customer-service training.",
+      href: "/services",
+      imageKey: "host" as const,
     },
   ],
 } as const;
 
 /** Old-site IA order for SEO soft landing. About/Contact remain as deep links. */
-export const profilePdf = "/pdf/TMCCompanyProfile-2014.pdf";
-
 export type NavItem = {
   href: string;
   label: string;

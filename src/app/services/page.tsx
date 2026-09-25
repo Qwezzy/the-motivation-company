@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
-import { images, site } from "@/lib/site";
+import { bookSpeakerHref, images, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Services",
-  description: `Speak, Host, and Facilitate with ${site.company} — deep links to Hector Mathabe offers.`,
+  description: `Energy, Synergy, and Strategy with ${site.company} — motivational speaking, facilitation, MC, and training.`,
 };
 
 export default function ServicesPage() {
@@ -18,11 +18,12 @@ export default function ServicesPage() {
             Services
           </p>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
-            Speak · Host · Facilitate
+            Energy · Synergy · Strategy
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/80">
-            Full offer detail lives on the Hector Mathabe site. Use the links
-            below to continue there.
+            Motivational talks, teambuilding, strategy facilitation, MC,
+            presentation coaching, customer service, and youth life skills —
+            delivered through our speaker roster.
           </p>
         </div>
       </section>
@@ -31,15 +32,15 @@ export default function ServicesPage() {
         <div className="container-narrow section-pad">
           <div className="grid gap-6 md:grid-cols-3">
             {site.offers.map((offer) => (
-              <a
+              <Link
                 key={offer.label}
-                href={site.mathabe[offer.hrefKey]}
+                href={offer.href}
                 className="group flex flex-col overflow-hidden rounded-2xl border border-navy/10 bg-slate-50 transition hover:border-gold hover:bg-white hover:shadow-md"
               >
                 <div className="relative aspect-[4/5] w-full bg-navy/5">
                   <Image
                     src={images[offer.imageKey]}
-                    alt={`${offer.title} — ${site.principal}`}
+                    alt={offer.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-top"
@@ -56,27 +57,34 @@ export default function ServicesPage() {
                     {offer.blurb}
                   </p>
                   <span className="mt-5 text-sm font-semibold text-navy">
-                    Open on Mathabe site →
+                    Explore →
                   </span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
+          <ul className="mx-auto mt-12 max-w-2xl space-y-2 text-sm text-navy/70">
+            <li>
+              <strong className="text-navy">Also available:</strong> Motivational
+              programme director / MC · Presentation skills coaching · Customer
+              service consulting · Youth life skills programme
+            </li>
+          </ul>
           <p className="mt-10 text-center text-sm text-navy/60">
             Prefer the short path?{" "}
             <Link
-              href="/contact"
+              href={bookSpeakerHref}
               className="font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4"
             >
-              Contact
+              Book a Speaker
             </Link>{" "}
             or{" "}
-            <a
-              href={site.mathabe.book}
+            <Link
+              href="/our-speakers"
               className="font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4"
             >
-              Book Hector
-            </a>
+              browse Our Speakers
+            </Link>
             .
           </p>
         </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
-import { profilePdf, site } from "@/lib/site";
+import { bookSpeakerHref, profilePdf, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Training",
@@ -21,8 +21,8 @@ export default function TrainingPage() {
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/80">
             {site.company} supports organisations that want more than a single
-            keynote — structured development alongside speak, host, and
-            facilitate work.
+            keynote — structured development alongside Energy, Synergy, and
+            Strategy work.
           </p>
         </div>
       </section>
@@ -34,12 +34,12 @@ export default function TrainingPage() {
               This page is a soft landing for the legacy Training path. Programme
               detail evolves with client briefs — we keep this surface thin so
               nothing here over-promises on programmes still being confirmed with
-              Hector and the team.
+              the team.
             </p>
             <p>
-              For the company overview and historical context, download our
-              profile. To discuss a training or workshop need, book Hector or
-              email bookings directly.
+              For the company overview, download our profile. To discuss a
+              training or workshop need, book a speaker or email bookings
+              directly.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
               <a
@@ -50,9 +50,9 @@ export default function TrainingPage() {
               >
                 Download our Profile
               </a>
-              <a href={site.mathabe.book} className="btn-navy">
-                Book Hector
-              </a>
+              <Link href={bookSpeakerHref} className="btn-navy">
+                Book a Speaker
+              </Link>
               <Link href="/contact" className="btn-secondary !text-navy !border-navy">
                 Contact
               </Link>

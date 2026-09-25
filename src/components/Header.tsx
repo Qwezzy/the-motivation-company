@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { images, nav, site, type NavItem } from "@/lib/site";
+import { bookSpeakerHref, images, nav, site, type NavItem } from "@/lib/site";
 
 function NavLink({
   item,
@@ -40,14 +40,15 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-navy/10 bg-navy text-white shadow-md">
+    <header className="sticky top-0 z-50 border-b border-navy/15 bg-white text-navy shadow-sm">
       <div className="container-narrow flex items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="group flex items-center gap-3"
+          className="group flex min-w-0 items-center gap-3"
           onClick={() => setOpen(false)}
         >
-          <span className="relative block h-9 w-[160px] sm:h-10 sm:w-[190px]">
+          {/* Logo as-is on white chrome — no plate/chip; old-site tmc-logo.webp */}
+          <span className="relative block h-9 w-[160px] shrink-0 sm:h-10 sm:w-[190px]">
             <Image
               src={images.logo}
               alt={site.company}
@@ -57,8 +58,8 @@ export default function Header() {
               priority
             />
           </span>
-          <span className="hidden flex-col leading-tight border-l border-white/20 pl-3 sm:flex">
-            <span className="text-[10px] uppercase tracking-[0.15em] text-white/70">
+          <span className="hidden flex-col leading-tight border-l border-navy/20 pl-3 sm:flex">
+            <span className="text-[10px] uppercase tracking-[0.15em] text-navy/55">
               Presents
             </span>
             <span className="text-xs font-medium text-gold">{site.principal}</span>
@@ -75,7 +76,7 @@ export default function Header() {
                 className={`rounded-full px-3 py-2 text-sm font-medium transition ${
                   active
                     ? "bg-gold text-navy"
-                    : "text-white/90 hover:bg-white/10 hover:text-gold"
+                    : "text-navy/70 hover:bg-gold/20 hover:text-navy"
                 }`}
               />
             );
@@ -83,15 +84,15 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={site.mathabe.book}
+          <Link
+            href={bookSpeakerHref}
             className="btn-primary hidden sm:inline-flex !py-2 !text-xs"
           >
-            Book Hector
-          </a>
+            Book a Speaker
+          </Link>
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md p-2 text-gold lg:hidden"
+            className="inline-flex items-center justify-center rounded-md p-2 text-navy lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
@@ -133,7 +134,7 @@ export default function Header() {
       {open && (
         <nav
           id="mobile-nav"
-          className="border-t border-white/10 bg-navy-dark px-4 py-4 lg:hidden"
+          className="border-t border-navy/10 bg-white px-4 py-4 lg:hidden"
           aria-label="Mobile"
         >
           <ul className="flex flex-col gap-1">
@@ -145,20 +146,22 @@ export default function Header() {
                     item={item}
                     onNavigate={() => setOpen(false)}
                     className={`block rounded-lg px-3 py-3 text-sm font-medium ${
-                      active ? "bg-gold text-navy" : "text-white hover:bg-white/10"
+                      active
+                        ? "bg-gold text-navy"
+                        : "text-navy hover:bg-gold/15"
                     }`}
                   />
                 </li>
               );
             })}
             <li>
-              <a
-                href={site.mathabe.book}
+              <Link
+                href={bookSpeakerHref}
                 onClick={() => setOpen(false)}
                 className="mt-2 block rounded-lg bg-gold px-3 py-3 text-center text-sm font-semibold text-navy"
               >
-                Book Hector
-              </a>
+                Book a Speaker
+              </Link>
             </li>
           </ul>
         </nav>

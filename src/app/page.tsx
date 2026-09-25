@@ -4,7 +4,7 @@ import CtaBanner from "@/components/CtaBanner";
 import GalleryStrip from "@/components/GalleryStrip";
 import SpeakersGrid from "@/components/SpeakersGrid";
 import RealStrip from "@/components/RealStrip";
-import { images, site } from "@/lib/site";
+import { bookSpeakerHref, images, site } from "@/lib/site";
 
 export default function HomePage() {
   return (
@@ -23,25 +23,24 @@ export default function HomePage() {
         </div>
         <div className="container-narrow relative section-pad">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">
-            Company soft landing
+            Motivation training hub
           </p>
           <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
             {site.company}
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/85 sm:text-xl">
-            {site.relationshipLine}
+            Vision: {site.vision}.
           </p>
           <p className="mt-3 max-w-2xl text-base text-white/70">
-            We are the legal and operational home for Hector&apos;s work —
-            bookings, trust, and event delivery. For talks, MC, and workshops,
-            start on the Hector Mathabe site.
+            {site.relationshipLine} Book a speaker for keynotes, MC,
+            facilitation, or training — we match the right voice to your brief.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <a href={site.mathabe.book} className="btn-primary">
-              Book Hector
-            </a>
-            <Link href="/about" className="btn-secondary">
-              About the company
+            <Link href={bookSpeakerHref} className="btn-primary">
+              Book a Speaker
+            </Link>
+            <Link href="/our-speakers" className="btn-secondary">
+              Our Speakers
             </Link>
           </div>
         </div>
@@ -53,7 +52,7 @@ export default function HomePage() {
             <div className="relative mx-auto aspect-[3/4] w-full max-w-xs overflow-hidden rounded-2xl border-2 border-gold/40 bg-navy/5 shadow-xl">
               <Image
                 src={images.principal}
-                alt={`${site.principal} — principal talent for ${site.company}`}
+                alt={`${site.principal} — Principal for ${site.company}`}
                 fill
                 sizes="320px"
                 className="object-cover object-top"
@@ -70,16 +69,16 @@ export default function HomePage() {
                 Also known as {site.principalAlsoKnownAs}
               </p>
               <p className="mt-4 text-base leading-relaxed text-navy/75">
-                Motivational speaker, MC, and facilitator. {site.company} presents
-                Hector to organisations that need a trusted partner for elevated
-                events — while his personal site remains the place to book and
-                explore his work.
+                Motivational speaker, MC, and facilitator — featured Principal of{" "}
+                {site.company}. The hub presents Hector alongside a growing
+                roster of SCAMP graduates and specialist facilitators for
+                organisations that need a trusted partner for elevated events.
               </p>
               <a
-                href={site.mathabe.about}
+                href={site.mathabe.home}
                 className="mt-6 inline-flex text-sm font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-navy-light"
               >
-                Meet Hector on his site →
+                Meet Hector Mathabe →
               </a>
             </div>
           </div>
@@ -93,24 +92,25 @@ export default function HomePage() {
               What we offer
             </p>
             <h2 className="mt-2 text-3xl font-semibold text-navy">
-              Speak · Host · Facilitate
+              Energy · Synergy · Strategy
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-sm text-navy/65">
-              Deep detail and booking live on the Hector Mathabe site. Choose a
-              path below to continue there.
+              Motivational talks, teambuilding, strategy facilitation, MC,
+              presentation coaching, customer service, and youth life skills —
+              delivered through our speaker roster.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {site.offers.map((offer) => (
-              <a
+              <Link
                 key={offer.label}
-                href={site.mathabe[offer.hrefKey]}
+                href={offer.href}
                 className="group flex flex-col overflow-hidden rounded-2xl border border-navy/10 bg-white shadow-sm transition hover:border-gold hover:shadow-md"
               >
                 <div className="relative aspect-[4/5] w-full bg-navy/5">
                   <Image
                     src={images[offer.imageKey]}
-                    alt={`${offer.title} — ${site.principal}`}
+                    alt={offer.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-top transition duration-300 group-hover:scale-[1.02]"
@@ -127,10 +127,10 @@ export default function HomePage() {
                     {offer.blurb}
                   </p>
                   <span className="mt-5 text-sm font-semibold text-navy">
-                    View on Mathabe site →
+                    Explore →
                   </span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
