@@ -2,16 +2,19 @@ const mathabeBase =
   process.env.NEXT_PUBLIC_MATHABE_SITE_URL?.replace(/\/$/, "") ||
   "https://hector-motivator.vercel.app";
 
-/** Soft-landing image slots → public paths (image pass). */
+/**
+ * Soft-landing image slots → public paths.
+ * Source of truth: themotivationcompany.co.za/images/ only.
+ * Do NOT wire Hector Motivator personal-site assets (hector-speak, hector-mc,
+ * hector-facilitate, hector-about, hector-hero, DSC_*, client portraits, etc.).
+ */
 export const images = {
-  logo: "/images/tmc-logo.webp",
-  hero: "/images/tmc-hero-top.webp",
-  principal: "/images/hector-about.webp",
-  speak: "/images/hector-speak.webp",
-  host: "/images/hector-mc.webp",
-  facilitate: "/images/hector-facilitate.webp",
-  bookVisual: "/images/hector-book.webp",
-  clients: "/images/hector-clients.webp",
+  logo: "/images/tmc-logo.webp", // old: logo.jpg
+  hero: "/images/tmc-hero-top.webp", // old: top-image.jpg
+  principal: "/images/tmc-principal.webp", // old: gallery/large/08.jpg
+  speak: "/images/tmc-speak.webp", // old: gallery/large/04.jpg (4:5 crop)
+  host: "/images/tmc-host.webp", // old: gallery/large/09.jpg
+  facilitate: "/images/tmc-facilitate.webp", // old: gallery/large/07.jpg
   gallery: [
     "/images/tmc-gallery-01.webp",
     "/images/tmc-gallery-02.webp",
@@ -20,6 +23,7 @@ export const images = {
     "/images/tmc-gallery-05.webp",
     "/images/tmc-gallery-06.webp",
     "/images/tmc-gallery-07.webp",
+    "/images/tmc-gallery-08.webp",
     "/images/tmc-gallery-09.webp",
     "/images/tmc-gallery-10.webp",
   ],
