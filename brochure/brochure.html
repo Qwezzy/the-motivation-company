@@ -83,9 +83,9 @@
   .oc div.fill { background: var(--navy); border-color: var(--navy); border-top: 2px solid rgba(255,203,5,.7); }
   .oc div.fill .t { color: #fff; }
   .oc div.fill .n { color: var(--gold); }
-  .team { font-size: 34pt; line-height: 1.05; font-weight: 400; letter-spacing: -0.02em; color: var(--navy); }
-  .team b { color: var(--gold); font-weight: 700; }
-  .team span { display: block; white-space: nowrap; }
+  .team { display: grid; grid-template-columns: max-content max-content; column-gap: 0; font-size: 29pt; line-height: 1.05; letter-spacing: -0.01em; color: var(--navy); margin-top: 0; }
+  .team b { color: #FFCB05; font-weight: 800; }
+  .team span { color: #232A60; font-weight: 500; white-space: nowrap; }
 
   /* p6 back */
   .back { background: var(--navy); color: #fff; }
@@ -213,13 +213,13 @@
       <div class="fill"><span class="n">09</span><span class="t">Improved Self Confidence</span></div>
       <div><span class="n">10</span><span class="t">Harmonious Relationships</span></div>
     </div>
-    <div style="margin-top:10mm;display:grid;grid-template-columns:1fr 1fr;column-gap:3mm;align-items:center">
+    <div style="margin-top:8mm;margin-bottom:5mm;display:grid;grid-template-columns:1fr 1fr;column-gap:3mm;align-items:center">
       <div>
         <p class="eyebrow dk noBar"><span class="ring sm">09</span>Team Tool Kit</p>
         <ul class="d" style="margin-top:4mm"><li>Notes from your Colleagues</li><li>Team Collage</li><li>Commitment Charter</li></ul>
       </div>
       <div>
-        <p class="team" style="width:fit-content;margin-inline:auto"><span><b>T</b>ogether</span> <span><b>E</b>veryone</span> <span><b>A</b>chieves</span> <span><b>M</b>ore</span></p>
+        <p class="team" style="width:fit-content;margin-inline:auto"><b style="margin-left:-0.02em">T</b><span>ogether</span><b>E</b><span>veryone</span><b style="margin-left:-0.05em">A</b><span>chieves</span><b>M</b><span>ore</span></p>
       </div>
     </div>
   </div>
