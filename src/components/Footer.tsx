@@ -1,7 +1,12 @@
 import Link from "next/link";
-import { bookSpeakerHref, nav, site } from "@/lib/site";
+import { bookSpeakerHref, nav, site, type NavItem } from "@/lib/site";
 
-export default function Footer() {
+export default function Footer({
+  extraNav = [],
+}: {
+  extraNav?: readonly NavItem[];
+}) {
+  const items = [...nav.slice(0, 4), ...extraNav, ...nav.slice(4)];
   return (
     <footer className="bg-navy text-white">
       <div className="container-narrow section-pad !py-8 sm:!py-10">
@@ -18,7 +23,7 @@ export default function Footer() {
               Explore
             </p>
             <ul className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1">
-              {nav.map((item) => (
+              {items.map((item) => (
                 <li key={item.href + item.label}>
                   {item.external ? (
                     <a

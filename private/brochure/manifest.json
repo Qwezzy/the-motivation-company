@@ -1,0 +1,5 @@
+{
+  "file": "TMC-Team-Building-Brochure.pdf",
+  "placeholder": false,
+  "note": "Real client photos (brochure/photos/). placeholder=false. Production still needs BROCHURE_READY=true plus SMTP_PASS and DOWNLOAD_SECRET."
+}

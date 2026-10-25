@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
-import { bookSpeakerHref, site } from "@/lib/site";
+import { bookSpeakerHref, site, teamBuildingHref } from "@/lib/site";
+import { teamBuildingEnabled } from "@/lib/brochureGate";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
+  const showTeamBuilding = teamBuildingEnabled();
   return (
     <>
       <section className="bg-navy text-white">
@@ -115,7 +117,13 @@ export default function ServicesPage() {
                     </p>
                   ) : null}
                   {"ctaHref" in block && block.ctaHref ? (
-                    <div className="mt-5">
+                    <div className="mt-5 flex flex-wrap gap-3">
+                      {showTeamBuilding &&
+                      block.title === "Team Building Facilitation" ? (
+                        <Link href={teamBuildingHref} className="btn-navy">
+                          Get our team building brochure
+                        </Link>
+                      ) : null}
                       <a href={block.ctaHref} className="btn-primary">
                         {"ctaLabel" in block && block.ctaLabel
                           ? block.ctaLabel
