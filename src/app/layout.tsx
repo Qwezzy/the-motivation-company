@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { site } from "@/lib/site";
+import { site, teamBuildingNav } from "@/lib/site";
+import { teamBuildingEnabled } from "@/lib/brochureGate";
 import "./globals.css";
 
 const inter = Inter({
@@ -33,14 +34,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const extraNav = teamBuildingEnabled() ? [teamBuildingNav] : [];
   return (
     <html lang="en-ZA" className={inter.variable}>
       <body
         className={`${inter.className} flex min-h-screen flex-col font-sans`}
       >
-        <Header />
+        <Header extraNav={extraNav} />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <Footer extraNav={extraNav} />
       </body>
     </html>
   );

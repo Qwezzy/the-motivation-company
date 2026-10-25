@@ -35,9 +35,15 @@ function NavLink({
   );
 }
 
-export default function Header() {
+export default function Header({
+  extraNav = [],
+}: {
+  /** Server-gated items (e.g. Team Building when the brochure is live) */
+  extraNav?: readonly NavItem[];
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const items = [...nav.slice(0, 4), ...extraNav, ...nav.slice(4)];
 
   return (
     <header className="sticky top-0 z-50 border-b border-navy/15 bg-white text-navy shadow-sm">
@@ -61,7 +67,7 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
-          {nav.map((item) => {
+          {items.map((item) => {
             const active = !item.external && pathname === item.href;
             return (
               <NavLink
@@ -132,7 +138,7 @@ export default function Header() {
           aria-label="Mobile"
         >
           <ul className="flex flex-col gap-1">
-            {nav.map((item) => {
+            {items.map((item) => {
               const active = !item.external && pathname === item.href;
               return (
                 <li key={item.href + item.label}>

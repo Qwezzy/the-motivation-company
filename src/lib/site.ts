@@ -457,3 +457,10 @@ export const nav: readonly NavItem[] = [
     external: true,
   },
 ] as const;
+
+/** Team-building brochure page. Shown in nav only when the server gate allows it. */
+export const teamBuildingHref = "/team-building";
+export const teamBuildingNav: NavItem = {
+  href: teamBuildingHref,
+  label: "Team Building",
+};
