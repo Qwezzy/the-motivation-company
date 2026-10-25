@@ -27,7 +27,7 @@ export const styles = [
 ] as const;
 
 export const privacyNotice =
-  "We use your details only to email you this brochure and to reply to your team-building enquiry. Your answers are sent to our bookings inbox and are not shared with anyone else or added to a mailing list. To have your details removed, email bookings@themotivationcompany.co.za.";
+  "We use your details only to give you this brochure and to reply to your team-building enquiry. Your answers are sent to our bookings inbox and are not shared with anyone else or added to a mailing list. To have your details removed, email bookings@themotivationcompany.co.za.";
 
 export const consentLabel =
   "I agree to these details being used to send the brochure and respond to my enquiry.";

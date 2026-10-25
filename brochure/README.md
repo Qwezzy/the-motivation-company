@@ -1,6 +1,6 @@
 # Team-building brochure
 
-Source for the private PDF emailed by `/team-building` (`/api/team-building`).
+Source for the private PDF released by `/team-building`: after the answers are emailed to bookings@ via SMTP (`/api/team-building`), the visitor gets a signed 24h link to `/api/team-building/brochure?token=...`.
 
 - `brochure.html`: A4 layout (TMC navy #232A60 / gold #FFCB05, Inter). Content is only the client's
   "Motivational Team Building Brochure" (typos fixed) plus two client-approved quotes
@@ -20,5 +20,6 @@ Source for the private PDF emailed by `/team-building` (`/api/team-building`).
 ## Going live (production guard)
 On Vercel production the page 404s, the nav link is hidden and the API refuses to send unless
 `BROCHURE_READY=true` AND `private/brochure/manifest.json` has `"placeholder": false`.
-Also set `RESEND_API_KEY`, `MAIL_FROM` (verified Resend sender) and optionally `BOOKINGS_INBOX`.
+Also set `SMTP_PASS` (bookings@ mailbox password), `DOWNLOAD_SECRET` (random, 32+ chars) and optionally
+`SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `MAIL_FROM`, `BOOKINGS_INBOX`. See `.env.example`.
 See `.env.example`.

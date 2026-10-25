@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Team Building Brochure",
-  description: `Answer a few questions and ${site.company} will email you our Motivational Team Building brochure.`,
+  description: `Answer a few questions and download the ${site.company} Motivational Team Building brochure straight away.`,
 };
 
 const sections = [
@@ -53,6 +53,10 @@ export default function TeamBuildingPage() {
             Increased Trust, Effective Communication, Accountability and meeting
             of responsibilities.
           </p>
+          <p className="mt-4 max-w-2xl text-base font-semibold text-gold">
+            Answer a few questions and download our team building brochure
+            straight away.
+          </p>
         </div>
       </section>
 
@@ -67,9 +71,9 @@ export default function TeamBuildingPage() {
                 The Motivational Team Building brochure
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-navy/70">
-                Answer the short questionnaire below and we will email you our
-                brochure as a PDF, with a summary of your answers. Our team
-                will then reply to your enquiry.
+                Answer the short questionnaire below and you can download our
+                brochure as a PDF straight away after submitting. Your answers
+                go to our bookings team, who will reply to your enquiry.
               </p>
             </div>
             <div className="rounded-2xl border border-navy/10 bg-slate-50 p-6">

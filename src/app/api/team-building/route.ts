@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import { issueToken } from "@/lib/downloadToken";
 import path from "node:path";
 import { NextResponse } from "next/server";
 import { brochureDir, readManifest, teamBuildingEnabled } from "@/lib/brochureGate";
@@ -70,14 +71,14 @@ export async function POST(req: Request) {
   const errors = validate(answers);
   if (Object.keys(errors).length) return fail(422, "validation", { errors });
 
-  const from = process.env.MAIL_FROM;
+  const from = process.env.MAIL_FROM || site.email;
   const inbox = process.env.BOOKINGS_INBOX || site.email;
-  if (!from) return fail(503, "not_configured");
 
-  const manifest = readManifest();
-  let pdf: Buffer;
+  // Make sure we can release the brochure before recording the lead.
+  const token = issueToken();
+  if (!token) return fail(503, "not_configured");
   try {
-    pdf = await fs.readFile(path.join(brochureDir, manifest.file));
+    await fs.access(path.join(brochureDir, readManifest().file));
   } catch {
     return fail(503, "brochure_missing");
   }
@@ -85,30 +86,24 @@ export async function POST(req: Request) {
   const rows = summaryLines(answers);
   const textSummary = rows.map(([k, v]) => `${k}: ${v}`).join("\n");
 
-  const visitor = await sendMail({
-    from,
-    to: answers.email,
-    replyTo: inbox,
-    subject: "Your Motivational Team Building brochure from The Motivation Company",
-    text: `Hi ${answers.name},\n\nThank you for your interest in team building with The Motivation Company (TMC). Our Motivational Team Building brochure is attached.\n\nHere is a summary of what you told us:\n\n${textSummary}\n\nWe will reply to your enquiry. You can also reach us on ${site.phone} or ${site.email}.\n\nThe Motivation Company\n${site.website}`,
-    html: `<div style="font-family:Inter,Arial,sans-serif;color:#232A60;max-width:600px"><p>Hi ${esc(answers.name)},</p><p>Thank you for your interest in team building with The Motivation Company (TMC). Our Motivational Team Building brochure is attached.</p><p><strong>Here is a summary of what you told us:</strong></p>${tableHtml(rows)}<p>We will reply to your enquiry. You can also reach us on ${esc(site.phone)} or <a href="${site.emailHref}">${esc(site.email)}</a>.</p><p>The Motivation Company<br>${esc(site.website)}</p></div>`,
-    attachments: [{ filename: "TMC-Team-Building-Brochure.pdf", content: pdf }],
-  });
-
-  if (!visitor.ok) {
-    console.error("[team-building] visitor email failed:", visitor.error);
-    return fail(502, "send_failed");
-  }
-
+  // Lead is recorded in TMC's own mailbox. Brochure is only released if this succeeds.
   const notify = await sendMail({
     from,
     to: inbox,
     replyTo: answers.email,
     subject: `Team building enquiry: ${answers.organisation} (${answers.teamSize})`,
-    text: `New team-building questionnaire. The brochure was emailed to ${answers.email}.\n\n${textSummary}\n\nConsent: ${answers.consent ? "Yes" : "No"}`,
-    html: `<div style="font-family:Inter,Arial,sans-serif;color:#232A60;max-width:600px"><p>New team-building questionnaire. The brochure was emailed to ${esc(answers.email)}.</p>${tableHtml(rows)}<p>Consent to use details for the brochure and enquiry: Yes</p><p>Reply to this email to respond directly.</p></div>`,
+    text: `New team-building questionnaire from the website. The visitor was given the brochure download after this email was accepted.\n\n${textSummary}\n\nConsent to use details for the brochure and enquiry: Yes\n\nReply to this email to respond directly to ${answers.email}.`,
+    html: `<div style="font-family:Inter,Arial,sans-serif;color:#232A60;max-width:600px"><p>New team-building questionnaire from the website. The visitor was given the brochure download after this email was accepted.</p>${tableHtml(rows)}<p>Consent to use details for the brochure and enquiry: Yes</p><p>Reply to this email to respond directly to ${esc(answers.email)}.</p></div>`,
   });
-  if (!notify.ok) console.error("[team-building] bookings notification failed:", notify.error);
 
-  return NextResponse.json({ ok: true, sent: true, notified: notify.ok });
+  if (!notify.ok) {
+    console.error("[team-building] bookings email failed:", notify.error);
+    return fail(502, "send_failed");
+  }
+
+  return NextResponse.json({
+    ok: true,
+    sent: true,
+    downloadUrl: `/api/team-building/brochure?token=${encodeURIComponent(token)}`,
+  });
 }

@@ -79,7 +79,7 @@ export default function TeamBuildingForm() {
   });
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<Status>("idle");
-  const [sentTo, setSentTo] = useState("");
+  const [downloadUrl, setDownloadUrl] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   const set = <K extends keyof typeof f>(k: K, v: (typeof f)[K]) =>
@@ -109,9 +109,10 @@ export default function TeamBuildingForm() {
         sent?: boolean;
         error?: string;
         errors?: FieldErrors;
+        downloadUrl?: string;
       };
-      if (res.ok && data.ok && data.sent) {
-        setSentTo(f.email.trim());
+      if (res.ok && data.ok && data.sent && data.downloadUrl) {
+        setDownloadUrl(data.downloadUrl);
         setStatus("sent");
         return;
       }
@@ -121,11 +122,11 @@ export default function TeamBuildingForm() {
           ? "Too many attempts from your connection. Please wait a few minutes and try again."
           : res.status === 422
             ? "Please check the highlighted answers."
-            : "We could not send the brochure just now.",
+            : "We could not submit your answers just now.",
       );
       setStatus("error");
     } catch {
-      setErrorMsg("We could not send the brochure just now.");
+      setErrorMsg("We could not submit your answers just now.");
       setStatus("error");
     }
   }
@@ -137,14 +138,15 @@ export default function TeamBuildingForm() {
         role="status"
         data-testid="tb-success"
       >
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Sent</p>
-        <h2 className="mt-3 text-2xl font-semibold">Check your inbox</h2>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Thank you</p>
+        <h2 className="mt-3 text-2xl font-semibold">Your brochure is ready</h2>
         <p className="mt-3 text-sm leading-relaxed text-white/80">
-          We have emailed the Motivational Team Building brochure to{" "}
-          <strong className="break-all text-white">{sentTo}</strong>. It can take a few
-          minutes to arrive, so please check your spam folder too. Our team will reply
-          to your enquiry.
+          We have received your answers and our team will reply to your enquiry. Download the
+          Motivational Team Building brochure below. The link works for 24 hours.
         </p>
+        <a href={downloadUrl} className="btn-primary mt-6" data-testid="tb-download">
+          Download the brochure
+        </a>
       </div>
     );
   }
@@ -301,7 +303,7 @@ export default function TeamBuildingForm() {
         <div className="mt-6 rounded-xl border border-red-300 bg-red-50 p-4 text-sm text-red-800" role="alert" data-testid="tb-error">
           <p className="font-semibold">{errorMsg}</p>
           <p className="mt-1">
-            The brochure has not been sent. Please try again, or contact us on{" "}
+            Your answers were not received, so the brochure is not available yet. Please try again, or contact us on{" "}
             <a href={site.phoneHref} className="font-semibold underline">{site.phone}</a> or{" "}
             <a href={site.emailHref} className="break-all font-semibold underline">{site.email}</a>.
           </p>
@@ -310,7 +312,7 @@ export default function TeamBuildingForm() {
 
       <div className="mt-6">
         <button type="submit" className="btn-primary w-full sm:w-auto" disabled={status === "sending"}>
-          {status === "sending" ? "Sending..." : "Email me the brochure"}
+          {status === "sending" ? "Submitting..." : "Submit and get the brochure"}
         </button>
       </div>
     </form>

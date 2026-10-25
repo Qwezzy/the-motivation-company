@@ -4,6 +4,7 @@ const nextConfig = {
   experimental: {
     outputFileTracingIncludes: {
       "/api/team-building": ["./private/brochure/**/*"],
+      "/api/team-building/brochure": ["./private/brochure/**/*"],
     },
   },
   async redirects() {
