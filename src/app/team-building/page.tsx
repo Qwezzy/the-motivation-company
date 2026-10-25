@@ -14,12 +14,12 @@ export const metadata: Metadata = {
 };
 
 const sections = [
-  "Pre workshop and team building assessment",
+  "Pre-workshop and team building assessment",
   "Team building structure: introductions, buy in, issues from the brief",
   "Workshop content: vision, mission and values, Tuckman's team development model, diversity, dealing with conflict",
   "Team motivation: the SHARP Teamplementation presentation and personal motivation",
-  "Methodology: a holistic and practical approach, with adventure based learning",
-  "Tools, adventure based activities, outcomes and a team tool kit",
+  "Methodology: a holistic and practical approach, with adventure-based learning",
+  "Tools, adventure-based activities, outcomes and a team tool kit",
 ];
 
 const photos = [
@@ -49,9 +49,9 @@ export default function TeamBuildingPage() {
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/80">
             We offer a high impact and dynamic Team Building programme that is
-            results driven. Our way of Team Building focuses on Motivation,
-            Increased Trust, Effective Communication, Accountability and meeting
-            of responsibilities.
+            results-driven. Our way of Team Building focuses on Motivation,
+            Increased Trust, Effective Communication, Accountability and the
+            meeting of responsibilities.
           </p>
           <p className="mt-4 max-w-2xl text-base font-semibold text-gold">
             Answer a few questions and download our team building brochure
