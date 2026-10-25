@@ -21,6 +21,7 @@
   p, li { font-size: 10.5pt; line-height: 1.55; color: rgba(35,42,96,.8); }
   .eyebrow { font-size: 8pt; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 3mm; }
   .eyebrow::before { content: ""; flex: none; width: 24px; height: 2px; background: var(--gold); }
+  .eyebrow.noBar::before { display: none; }
   .eyebrow.dk { color: #b38f00; } /* gold on white needs contrast: same hue, darker */
 
   /* Ring numerals + diamond bullets */
@@ -51,9 +52,9 @@
   .cover .photo { position: absolute; top: 0; left: 0; width: 210mm; height: 157mm; }
   .cover .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .cover .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(35,42,96,0) 45%, rgba(35,42,96,.75) 80%, #232A60 100%); }
-  .cover .logo { position: absolute; top: 12mm; left: 12mm; z-index: 4; background: rgba(255,255,255,.92); border-radius: 6px; padding: 3.5mm 4.5mm; box-shadow: 0 1mm 3mm rgba(0,0,0,.12); }
-  .pill { background: rgba(255,255,255,.92); border-radius: 6px; box-shadow: 0 1mm 3mm rgba(0,0,0,.12); }
-  .r48 { width: 48px; height: 1px; background: var(--gold); }
+  .cover .logo { position: absolute; top: 12mm; left: 12mm; z-index: 4; background: #FFFFFF; border-radius: 6px; padding: 3.5mm 4.5mm; box-shadow: 0 1mm 3mm rgba(0,0,0,.12); }
+  .pill { background: #FFFFFF; border-radius: 6px; box-shadow: 0 1mm 3mm rgba(0,0,0,.12); }
+  .r48 { width: 48px; height: 2px; background: #FFCB05; }
   .cover .logo img { height: 8mm; display: block; }
   .cover .title { position: absolute; left: var(--m); right: var(--m); bottom: 18mm; z-index: 4; }
   .cover .title h1 { font-size: 64pt; line-height: 62pt; color: #fff; }
@@ -69,10 +70,10 @@
 
   /* p3 TOC */
   .toc { margin-top: 5mm; }
-  .toc div { display: flex; align-items: baseline; gap: 4mm; height: 9.6mm; }
-  .toc .n { font-size: 28pt; font-weight: 300; color: #b38f00; width: 13mm; line-height: 1; }
-  .toc .t { font-size: 10.5pt; font-weight: 600; color: var(--navy); white-space: nowrap; }
-  .toc .dots { flex: 1; border-bottom: 1.2px dotted rgba(35,42,96,.35); transform: translateY(-1mm); }
+  .toc div { display: flex; align-items: baseline; gap: 2.5mm; height: 9.6mm; }
+  .toc .n { font-size: 28pt; font-weight: 300; color: #b38f00; width: 11.5mm; flex: none; line-height: 1; }
+  .toc .t { flex: 0 1 auto; min-width: 0; font-size: 10.5pt; font-weight: 600; color: var(--navy); white-space: nowrap; }
+  .toc .dots { flex: 1 0 6px; min-width: 6px; border-bottom: 1.2px dotted rgba(35,42,96,.35); transform: translateY(-1mm); }
 
   /* p5 outcomes */
   .oc { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, 1fr); gap: 3mm; flex: 1; margin-top: 5mm; }
@@ -179,11 +180,11 @@
 <section class="page">
   <div class="body">
     <div class="grid">
-      <div style="grid-column:1 / span 4"><div class="head ghost" data-n="05"><span class="ring">05</span><h3>Methodology</h3></div>
+      <div style="grid-column:1 / span 4"><div class="head"><span class="ring">05</span><h3>Methodology</h3></div>
         <ul class="d"><li>Holistic &amp; Practical Approach to Team Building Facilitation</li><li>Adventure-Based Learning</li></ul></div>
-      <div style="grid-column:5 / span 4"><div class="head ghost" data-n="06"><span class="ring">06</span><h3>Tools</h3></div>
+      <div style="grid-column:5 / span 4"><div class="head"><span class="ring">06</span><h3>Tools</h3></div>
         <ul class="d"><li>Personal Private Analysis (PPA)</li><li>Johari Window</li><li>SKS Model</li></ul></div>
-      <div style="grid-column:9 / span 4"><div class="head ghost" data-n="07"><span class="ring">07</span><h3>Adventure-Based Activities</h3></div>
+      <div style="grid-column:9 / span 4"><div class="head"><span class="ring">07</span><h3>Adventure-Based Activities</h3></div>
         <ul class="d"><li>Socialisers</li><li>Problem Solvers</li><li>Cognitive Activities</li><li>Physical Activities</li></ul></div>
     </div>
     <div class="grid" style="flex:1;margin-top:10mm;grid-template-rows:1fr 1fr;row-gap:var(--g)">
@@ -198,7 +199,7 @@
 <!-- 5 OUTCOMES + TOOL KIT + QUOTE 2 -->
 <section class="page">
   <div class="body">
-    <p class="eyebrow dk ghost" data-n="08"><span class="ring sm">08</span>Outcomes</p>
+    <p class="eyebrow dk noBar"><span class="ring sm">08</span>Outcomes</p>
     <h2 style="margin-top:3mm">Outcomes</h2>
     <div class="oc">
       <div class="fill"><span class="n">01</span><span class="t">Focused Team</span></div>
@@ -214,7 +215,7 @@
     </div>
     <div style="margin-top:10mm;display:grid;grid-template-columns:1fr 1fr;column-gap:3mm;align-items:center">
       <div>
-        <p class="eyebrow dk ghost" data-n="09"><span class="ring sm">09</span>Team Tool Kit</p>
+        <p class="eyebrow dk noBar"><span class="ring sm">09</span>Team Tool Kit</p>
         <ul class="d" style="margin-top:4mm"><li>Notes from your Colleagues</li><li>Team Collage</li><li>Commitment Charter</li></ul>
       </div>
       <div>
