@@ -3,191 +3,231 @@
 <head>
 <meta charset="utf-8">
 <title>The Motivation Company: Motivational Team Building</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
   @page { size: A4; margin: 0; }
-  :root { --navy:#232A60; --navy-dark:#1a1f4a; --navy-light:#2f3878; --gold:#FFCB05; --gold-dark:#e6b600; }
+  :root { --navy:#232A60; --navy-dark:#1a1f4a; --gold:#FFCB05; --m:18mm; --g:6mm; --foot:12mm; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Inter, "Gill Sans", Calibri, sans-serif; color: var(--navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .page { width: 210mm; height: 297mm; position: relative; overflow: hidden; page-break-after: always; background: #fff; }
+  body { font-family: Inter, sans-serif; color: var(--navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; position: relative; overflow: hidden; page-break-after: always; background: #fff; display: flex; flex-direction: column; }
   .page:last-child { page-break-after: auto; }
-  img.photo { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .eyebrow { font-size: 8.5pt; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--gold-dark); }
-  h2 { font-size: 24pt; font-weight: 800; letter-spacing: -.01em; line-height: 1.1; margin-top: 3mm; }
-  p { font-size: 10.5pt; line-height: 1.6; color: rgba(35,42,96,.82); }
-  .pad { padding: 16mm 16mm 0; }
-  .foot { position: absolute; bottom: 0; left: 0; right: 0; height: 12mm; background: var(--navy); color: rgba(255,255,255,.8); font-size: 8pt; display: flex; align-items: center; justify-content: space-between; padding: 0 16mm; }
+  .body { flex: 1; min-height: 0; padding: var(--m) var(--m) 8mm; display: flex; flex-direction: column; }
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--g); }
+
+  /* Type scale */
+  h1 { font-size: 44pt; line-height: 48pt; font-weight: 800; letter-spacing: -0.02em; }
+  h2 { font-size: 22pt; line-height: 1.15; font-weight: 700; letter-spacing: -0.01em; }
+  h3 { font-size: 13pt; line-height: 1.25; font-weight: 700; }
+  p, li { font-size: 10.5pt; line-height: 1.55; color: rgba(35,42,96,.8); }
+  .eyebrow { font-size: 8pt; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 3mm; }
+  .eyebrow.dk { color: #b38f00; } /* gold on white needs contrast: same hue, darker */
+
+  /* Ring numerals + diamond bullets */
+  .ring { flex: none; width: 9mm; height: 9mm; border: 2px solid var(--gold); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 9pt; font-weight: 700; color: var(--navy); background: #fff; }
+  .ring.sm { width: 7mm; height: 7mm; font-size: 7.5pt; }
+  .head { display: flex; align-items: center; gap: 3.5mm; }
+  ul.d { list-style: none; margin-top: 3mm; }
+  ul.d li { position: relative; padding-left: 5.5mm; margin-top: 1.2mm; }
+  ul.d li::before { content: ""; position: absolute; left: .6mm; top: 2.1mm; width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
+
+  /* Photos */
+  .ph { position: relative; overflow: hidden; border-radius: 4px; }
+  .ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .ph.lab::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(35,42,96,.55) 0%, rgba(35,42,96,0) 55%); }
+  .tag { position: absolute; left: 0; bottom: 0; z-index: 2; background: var(--navy); color: var(--gold); font-size: 7pt; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: 1.6mm 3mm; }
+  .hair { position: absolute; inset: 6mm; border: 1px solid var(--gold); pointer-events: none; z-index: 3; }
+
+  .foot { flex: none; height: var(--foot); background: var(--navy); color: rgba(255,255,255,.8); font-size: 8pt; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--m); }
   .foot b { color: var(--gold); font-weight: 700; }
-  .rule { width: 18mm; height: 1.6mm; background: var(--gold); border-radius: 1mm; margin-top: 5mm; }
 
   /* Cover */
-  .cover .hero { position: absolute; top: 0; left: 0; right: 0; height: 160mm; }
-  .cover .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,31,74,0) 55%, rgba(26,31,74,.95) 100%); }
-  .cover .panel { position: absolute; top: 160mm; left: 0; right: 0; bottom: 0; background: var(--navy); color: #fff; padding: 12mm 16mm; }
-  .cover .logo { position: absolute; top: 10mm; left: 12mm; background: #fff; border-radius: 4mm; padding: 3mm 5mm; box-shadow: 0 2mm 6mm rgba(0,0,0,.25); }
-  .cover .logo img { height: 16mm; display: block; }
-  .cover h1 { font-size: 40pt; font-weight: 800; line-height: 1.02; letter-spacing: -.02em; }
-  .cover h1 span { color: var(--gold); }
-  .cover .sub { margin-top: 6mm; font-size: 13pt; color: rgba(255,255,255,.85); font-weight: 500; }
-  .cover .eyebrow { color: var(--gold); }
-  .cover .contact { position: absolute; bottom: 12mm; left: 16mm; right: 16mm; display: flex; justify-content: space-between; font-size: 9pt; color: rgba(255,255,255,.75); border-top: .3mm solid rgba(255,203,5,.35); padding-top: 4mm; }
+  .cover { background: var(--navy); }
+  .cover .photo { position: absolute; top: 0; left: 0; width: 210mm; height: 157mm; }
+  .cover .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cover .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(35,42,96,0) 45%, rgba(35,42,96,.75) 80%, #232A60 100%); }
+  .cover .logo { position: absolute; top: 12mm; left: 12mm; z-index: 4; background: #fff; border-radius: 4px; padding: 1.5mm 2.5mm; }
+  .cover .logo img { height: 8mm; display: block; }
+  .cover .title { position: absolute; left: var(--m); right: var(--m); top: 118mm; z-index: 4; }
+  .cover .title h1 { font-size: 64pt; line-height: 62pt; color: #fff; }
+  .cover .title h1 span { color: var(--gold); display: block; }
+  .cover .sub { margin-top: 7mm; color: rgba(255,255,255,.85); font-size: 12.5pt; font-weight: 400; }
+  .cover .contact { margin-top: 9mm; border-top: 1px solid var(--gold); padding-top: 4mm; display: flex; justify-content: space-between; font-size: 9pt; color: rgba(255,255,255,.8); }
 
-  /* Quote */
-  .quote { position: relative; background: var(--gold); color: var(--navy); border-radius: 5mm; padding: 9mm 10mm 9mm 22mm; font-size: 17pt; font-weight: 800; line-height: 1.2; letter-spacing: -.01em; }
-  .quote::before { content: "\201C"; position: absolute; left: 6mm; top: 2mm; font-size: 54pt; line-height: 1; color: var(--navy); opacity: .9; }
+  /* p2 quote band */
+  .qband { flex: none; background: var(--navy); color: #fff; padding: 12mm var(--m) 12mm 46mm; position: relative; }
+  .qband::before { content: "\201C"; position: absolute; left: var(--m); top: -4mm; font-size: 120pt; line-height: 1; font-weight: 700; color: var(--gold); }
+  .qband p { color: #fff; font-size: 24pt; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; }
+  .rule-l { border-left: 4px solid var(--gold); padding-left: 5mm; }
 
-  /* Lists */
-  .toc { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 6mm; margin-top: 5mm; }
-  .toc div { display: flex; gap: 3mm; align-items: baseline; font-size: 9.5pt; font-weight: 600; }
-  .toc div span { color: var(--gold-dark); font-weight: 800; min-width: 7mm; }
-  .sec { margin-top: 7mm; }
-  .sec h3 { font-size: 12.5pt; font-weight: 800; display: flex; gap: 3mm; align-items: center; }
-  .num { display: inline-flex; width: 8mm; height: 8mm; border-radius: 50%; background: var(--navy); color: var(--gold); font-size: 9pt; font-weight: 800; align-items: center; justify-content: center; flex: none; }
-  ul.items { list-style: none; margin-top: 2.5mm; padding-left: 11mm; }
-  ul.items li { font-size: 10pt; line-height: 1.55; color: rgba(35,42,96,.85); padding-left: 4mm; position: relative; }
-  ul.items li::before { content: ""; position: absolute; left: 0; top: 2.2mm; width: 1.6mm; height: 1.6mm; background: var(--gold); border-radius: 50%; }
-  .card { background: #f8fafc; border: .3mm solid rgba(35,42,96,.1); border-radius: 4mm; padding: 6mm; }
-  .cap { position: absolute; left: 3mm; bottom: 3mm; background: rgba(26,31,74,.85); color: #fff; font-size: 7pt; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; padding: 1.2mm 2.5mm; border-radius: 1mm; }
-  .ph { position: relative; border-radius: 4mm; overflow: hidden; }
-  .outcomes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3mm; margin-top: 5mm; }
-  .outcomes div { background: var(--navy); color: #fff; border-radius: 3mm; padding: 3.6mm 4mm; font-size: 10pt; font-weight: 700; display: flex; gap: 3mm; align-items: center; }
-  .outcomes div span { color: var(--gold); font-weight: 800; }
+  /* p3 TOC */
+  .toc { margin-top: 5mm; }
+  .toc div { display: flex; align-items: baseline; gap: 4mm; height: 9.6mm; }
+  .toc .n { font-size: 28pt; font-weight: 300; color: var(--gold); width: 13mm; line-height: 1; }
+  .toc .t { font-size: 10.5pt; font-weight: 600; color: var(--navy); white-space: nowrap; }
+  .toc .dots { flex: 1; border-bottom: 1.2px dotted rgba(35,42,96,.35); transform: translateY(-1mm); }
+
+  /* p5 outcomes */
+  .oc { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, 1fr); gap: 3mm; flex: 1; margin-top: 5mm; }
+  .oc div { border: 1px solid rgba(35,42,96,.12); border-radius: 4px; background: #fff; display: flex; align-items: center; gap: 5mm; padding: 0 5mm; }
+  .oc .n { font-size: 28pt; font-weight: 300; color: var(--gold); width: 13mm; line-height: 1; }
+  .oc .t { font-size: 11pt; font-weight: 600; color: var(--navy); }
+  .oc div.fill { background: var(--navy); border-color: var(--navy); }
+  .oc div.fill .t { color: #fff; }
+  .team { font-size: 34pt; line-height: 1.05; font-weight: 400; letter-spacing: -0.02em; color: var(--navy); }
+  .team b { color: var(--gold); font-weight: 700; }
+
+  /* p6 back */
+  .back { background: var(--navy); color: #fff; }
+  .back .tex { position: absolute; inset: 0; opacity: .15; filter: grayscale(1); mix-blend-mode: luminosity; }
+  .back .tex img { width: 100%; height: 100%; object-fit: cover; }
+  .back .frame { position: absolute; inset: 8mm; border: 1px solid var(--gold); }
+  .back .inner { position: absolute; inset: 8mm; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 20mm; }
 </style>
 </head>
 <body>
 
-<!-- PAGE 1: COVER -->
+<!-- 1 COVER -->
 <section class="page cover">
-  <div class="hero"><img class="photo" src="photos/cover-circle.jpg" alt=""></div>
+  <div class="photo"><img src="photos/cover-circle.jpg" alt=""><div class="hair" style="bottom:42mm"></div></div>
   <div class="logo"><img src="tmc-logo.webp" alt="The Motivation Company"></div>
-  <div class="panel">
+  <div class="title">
     <p class="eyebrow">Our team building approach</p>
-    <h1 style="margin-top:4mm">Motivational<br><span>Team Building</span></h1>
+    <h1 style="margin-top:4mm">Motivational<span>Team Building</span></h1>
     <p class="sub">A team building facilitation workshop by The Motivation Company (TMC)</p>
     <div class="contact"><span>www.themotivationcompany.co.za</span><span>bookings@themotivationcompany.co.za</span><span>082 060 9888</span></div>
   </div>
 </section>
 
-<!-- PAGE 2: ACKNOWLEDGEMENT + WHAT IS A TEAM -->
+<!-- 2 ACKNOWLEDGEMENT -->
 <section class="page">
-  <div class="pad">
-    <p class="eyebrow">Acknowledgement</p>
-    <h2>Thank you</h2>
-    <div class="rule"></div>
-    <p style="margin-top:5mm">Thank you for providing The Motivation Company (TMC) with the opportunity to present a proposal on Motivational Team Building facilitation workshop for your team. We have approached this proposal with enthusiasm and hope that it will respond to all your needs.</p>
-
-    <div style="display:grid;grid-template-columns:1fr 78mm;gap:8mm;margin-top:9mm">
-      <div>
-        <p class="eyebrow">What is a team?</p>
-        <p style="margin-top:3mm">A team is a group of individuals who come together in an organised way to cooperate interdependently to achieve a common goal. Teams are created for short and long term projects to assist organisations to deliver efficient, effective and quality service to their clients.</p>
-        <p style="margin-top:3mm">A team building intervention becomes more than a necessity in an organisation that wants to take team performance to a higher level. Hence the correct way of undertaking such an intervention is important.</p>
+  <div class="body">
+    <div class="grid" style="flex:1;min-height:0">
+      <div style="grid-column:1 / span 7;display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <p class="eyebrow dk">Acknowledgement</p>
+          <h2 style="margin-top:3mm">Thank you</h2>
+          <p style="margin-top:4mm">Thank you for providing The Motivation Company (TMC) with the opportunity to present a proposal on Motivational Team Building facilitation workshop for your team. We have approached this proposal with enthusiasm and hope that it will respond to all your needs.</p>
+        </div>
+        <div>
+          <p class="eyebrow dk">What is a team?</p>
+          <p style="margin-top:3mm">A team is a group of individuals who come together in an organised way to cooperate interdependently to achieve a common goal. Teams are created for short and long term projects to assist organisations to deliver efficient, effective and quality service to their clients.</p>
+          <p style="margin-top:3mm">A team building intervention becomes more than a necessity in an organisation that wants to take team performance to a higher level. Hence the correct way of undertaking such an intervention is important.</p>
+        </div>
+        <div class="rule-l">
+          <p class="eyebrow dk">Our approach</p>
+          <p style="margin-top:3mm">We offer a high impact and dynamic Team Building programme that is results driven with proven track record. Our way of Team Building focuses on Motivation, Increased Trust, Effective Communication, Accountability and meeting of responsibilities to mention a few.</p>
+          <p style="margin-top:3mm;font-weight:700;color:var(--navy)">Our quest is really to give a client the best and leave them with long lasting results.</p>
+        </div>
       </div>
-      <div class="ph" style="height:78mm"><img class="photo" src="photos/team-huddle.jpg" alt=""></div>
-    </div>
-
-    <div class="quote" style="margin-top:9mm">No one of us is better than all of us together</div>
-
-    <div class="card" style="margin-top:9mm">
-      <p class="eyebrow">Our approach</p>
-      <p style="margin-top:2.5mm">We offer a high impact and dynamic Team Building programme that is results driven with proven track record. Our way of Team Building focuses on Motivation, Increased Trust, Effective Communication, Accountability and meeting of responsibilities to mention a few.</p>
-      <p style="margin-top:2.5mm;font-weight:700;color:var(--navy)">Our quest is really to give a client the best and leave them with long lasting results.</p>
+      <div class="ph" style="grid-column:8 / span 5;height:100%"><img src="photos/team-huddle.jpg" alt="" style="object-position:55% 50%"></div>
     </div>
   </div>
+  <div class="qband"><p>No one of us is better than all of us together</p></div>
   <div class="foot"><span><b>TMC</b> · Motivational Team Building</span><span>2</span></div>
 </section>
 
-<!-- PAGE 3: CONTENTS -->
+<!-- 3 CONTENTS + SECTIONS 01-04 -->
 <section class="page">
-  <div class="pad">
-    <p class="eyebrow">This proposal covers the following</p>
-    <h2>Table of contents</h2>
-    <div class="rule"></div>
-    <div class="toc" style="margin-top:7mm">
-      <div><span>01</span>Pre Workshop / Team Building Assessment</div>
-      <div><span>02</span>Team Building Structure</div>
-      <div><span>03</span>Workshop Content</div>
-      <div><span>04</span>Team Motivation</div>
-      <div><span>05</span>Methodology</div>
-      <div><span>06</span>Tools</div>
-      <div><span>07</span>Adventure Based Activities</div>
-      <div><span>08</span>Outcomes</div>
-      <div><span>09</span>Team Tool Kit</div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:6mm">
-      <div>
-        <div class="sec"><h3><span class="num">1</span>Section 1</h3>
-          <ul class="items"><li>Pre Workshop / Team Building Assessment</li></ul></div>
-        <div class="sec"><h3><span class="num">2</span>Team Building Structure</h3>
-          <ul class="items"><li>Introductions</li><li>Buy In</li><li>Issues from the brief</li><li>Matters from the pre workshop</li></ul></div>
-        <div class="sec"><h3><span class="num">3</span>Workshop Content</h3>
-          <ul class="items"><li>Re-visiting the Vision, Mission, Objectives and Values of the Team</li><li>Team Development Model by Bruce Tuckman (1965)</li><li>Team Dynamics: Diversity</li><li>Dealing With Conflict</li></ul></div>
-        <div class="sec"><h3><span class="num">4</span>Team Motivation</h3>
-          <ul class="items"><li>The SHARP Teamplementation Presentation</li><li>Personal Motivation</li></ul></div>
+  <div class="body" style="padding-right:0">
+    <div class="grid" style="height:112mm">
+      <div style="grid-column:1 / span 7">
+        <p class="eyebrow dk">This proposal covers the following</p>
+        <h2 style="margin-top:3mm">Table of contents</h2>
+        <div class="toc">
+          <div><span class="n">01</span><span class="t">Pre Workshop / Team Building Assessment</span><span class="dots"></span></div>
+          <div><span class="n">02</span><span class="t">Team Building Structure</span><span class="dots"></span></div>
+          <div><span class="n">03</span><span class="t">Workshop Content</span><span class="dots"></span></div>
+          <div><span class="n">04</span><span class="t">Team Motivation</span><span class="dots"></span></div>
+          <div><span class="n">05</span><span class="t">Methodology</span><span class="dots"></span></div>
+          <div><span class="n">06</span><span class="t">Tools</span><span class="dots"></span></div>
+          <div><span class="n">07</span><span class="t">Adventure Based Activities</span><span class="dots"></span></div>
+          <div><span class="n">08</span><span class="t">Outcomes</span><span class="dots"></span></div>
+          <div><span class="n">09</span><span class="t">Team Tool Kit</span><span class="dots"></span></div>
+        </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:5mm;margin-top:7mm">
-        <div class="ph" style="height:62mm"><img class="photo" src="photos/indoor-workshop.jpg" alt=""><span class="cap">Workshop</span></div>
-        <div class="ph" style="height:92mm"><img class="photo" src="photos/facilitator.jpg" alt="" style="object-position:50% 40%"><span class="cap">Team motivation</span></div>
+      <div class="ph lab" style="grid-column:8 / span 5;height:112mm;border-radius:4px 0 0 4px"><img src="photos/facilitator.jpg" alt="" style="object-position:50% 35%"><span class="tag">Team motivation</span></div>
+    </div>
+    <div class="grid" style="flex:1;margin-top:9mm;padding-right:var(--m);row-gap:7mm;grid-template-rows:auto 1fr">
+      <div style="grid-column:1 / span 7">
+        <div class="head"><span class="ring">01</span><h3>Pre Workshop / Team Building Assessment</h3></div>
+      </div>
+      <div class="ph lab" style="grid-column:8 / span 5;grid-row:1 / span 2"><img src="photos/indoor-workshop.jpg" alt=""><span class="tag">Workshop</span></div>
+      <div style="grid-column:1 / span 7;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--g);row-gap:6mm;align-content:space-between">
+        <div><div class="head"><span class="ring">02</span><h3>Team Building Structure</h3></div>
+          <ul class="d"><li>Introductions</li><li>Buy In</li><li>Issues from the brief</li><li>Matters from the pre workshop</li></ul></div>
+        <div><div class="head"><span class="ring">04</span><h3>Team Motivation</h3></div>
+          <ul class="d"><li>The SHARP Teamplementation Presentation</li><li>Personal Motivation</li></ul></div>
+        <div style="grid-column:1 / span 2"><div class="head"><span class="ring">03</span><h3>Workshop Content</h3></div>
+          <ul class="d"><li>Re-visiting the Vision, Mission, Objectives and Values of the Team</li><li>Team Development Model by Bruce Tuckman (1965)</li><li>Team Dynamics: Diversity</li><li>Dealing With Conflict</li></ul></div>
       </div>
     </div>
   </div>
   <div class="foot"><span><b>TMC</b> · Motivational Team Building</span><span>3</span></div>
 </section>
 
-<!-- PAGE 4: METHODOLOGY, TOOLS, ADVENTURE -->
+<!-- 4 METHODOLOGY / TOOLS / ADVENTURE -->
 <section class="page">
-  <div class="pad">
-    <p class="eyebrow">How we work</p>
-    <h2>Methodology, tools and adventure</h2>
-    <div class="rule"></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:2mm">
-      <div>
-        <div class="sec"><h3><span class="num">5</span>Methodology</h3>
-          <ul class="items"><li>Holistic &amp; Practical Approach to Team Building Facilitation</li><li>Adventure Based Learning</li></ul></div>
-        <div class="sec"><h3><span class="num">6</span>Tools</h3>
-          <ul class="items"><li>Personal Private Analysis (PPA)</li><li>Johari Window</li><li>SKS Model</li></ul></div>
-      </div>
-      <div>
-        <div class="sec"><h3><span class="num">7</span>Adventure Based Activities</h3>
-          <ul class="items"><li>Socialisers</li><li>Problem Solvers</li><li>Cognitive Activities</li><li>Physical Activities</li></ul></div>
-      </div>
+  <div class="body">
+    <div class="grid">
+      <div style="grid-column:1 / span 4"><div class="head"><span class="ring">05</span><h3>Methodology</h3></div>
+        <ul class="d"><li>Holistic &amp; Practical Approach to Team Building Facilitation</li><li>Adventure Based Learning</li></ul></div>
+      <div style="grid-column:5 / span 4"><div class="head"><span class="ring">06</span><h3>Tools</h3></div>
+        <ul class="d"><li>Personal Private Analysis (PPA)</li><li>Johari Window</li><li>SKS Model</li></ul></div>
+      <div style="grid-column:9 / span 4"><div class="head"><span class="ring">07</span><h3>Adventure Based Activities</h3></div>
+        <ul class="d"><li>Socialisers</li><li>Problem Solvers</li><li>Cognitive Activities</li><li>Physical Activities</li></ul></div>
     </div>
-    <div style="display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:72mm 72mm;gap:4mm;margin-top:9mm">
-      <div class="ph" style="grid-row:span 2"><img class="photo" src="photos/pipe-relay-close.jpg" alt=""><span class="cap">Problem solvers</span></div>
-      <div class="ph"><img class="photo" src="photos/pipe-relay.jpg" alt=""><span class="cap">Adventure based learning</span></div>
-      <div class="ph"><img class="photo" src="photos/field-activity.jpg" alt=""><span class="cap">Physical activities</span></div>
+    <div class="grid" style="flex:1;margin-top:10mm;grid-template-rows:1fr 1fr;row-gap:var(--g)">
+      <div class="ph lab" style="grid-column:1 / span 8;grid-row:1 / span 2"><img src="photos/pipe-relay-close.jpg" alt=""><span class="tag">Problem solvers</span></div>
+      <div class="ph lab" style="grid-column:9 / span 4"><img src="photos/pipe-relay.jpg" alt=""><span class="tag">Adventure based learning</span></div>
+      <div class="ph lab" style="grid-column:9 / span 4"><img src="photos/field-activity.jpg" alt=""><span class="tag">Physical activities</span></div>
     </div>
   </div>
   <div class="foot"><span><b>TMC</b> · Motivational Team Building</span><span>4</span></div>
 </section>
 
-<!-- PAGE 5: OUTCOMES + TOOL KIT + BACK -->
+<!-- 5 OUTCOMES + TOOL KIT + QUOTE 2 -->
 <section class="page">
-  <div class="pad">
-    <p class="eyebrow">Section 8</p>
-    <h2>Outcomes</h2>
-    <div class="rule"></div>
-    <div class="outcomes">
-      <div><span>01</span>Focused Team</div><div><span>02</span>Achieve Team Goals</div>
-      <div><span>03</span>Self-Directed Team</div><div><span>04</span>Improved Communication</div>
-      <div><span>05</span>Appreciate Diversity</div><div><span>06</span>Fun</div>
-      <div><span>07</span>Increased Trust</div><div><span>08</span>Improved Team Support</div>
-      <div><span>09</span>Improved Self Confidence</div><div><span>10</span>Harmonious Relationships</div>
+  <div class="body">
+    <p class="eyebrow dk"><span class="ring sm">08</span>Outcomes</p>
+    <h2 style="margin-top:3mm">Outcomes</h2>
+    <div class="oc">
+      <div><span class="n">01</span><span class="t">Focused Team</span></div>
+      <div><span class="n">02</span><span class="t">Achieve Team Goals</span></div>
+      <div class="fill"><span class="n">03</span><span class="t">Self-Directed Team</span></div>
+      <div><span class="n">04</span><span class="t">Improved Communication</span></div>
+      <div><span class="n">05</span><span class="t">Appreciate Diversity</span></div>
+      <div class="fill"><span class="n">06</span><span class="t">Fun</span></div>
+      <div><span class="n">07</span><span class="t">Increased Trust</span></div>
+      <div><span class="n">08</span><span class="t">Improved Team Support</span></div>
+      <div class="fill"><span class="n">09</span><span class="t">Improved Self Confidence</span></div>
+      <div><span class="n">10</span><span class="t">Harmonious Relationships</span></div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6mm;margin-top:8mm;align-items:stretch">
-      <div class="card">
-        <h3 style="font-size:12.5pt;font-weight:800;display:flex;gap:3mm;align-items:center"><span class="num">9</span>Team Tool Kit</h3>
-        <ul class="items" style="padding-left:0;margin-top:3mm"><li>Note from your Colleagues</li><li>Team Collage</li><li>Commitment Charter</li></ul>
+    <div class="grid" style="margin-top:10mm;align-items:end">
+      <div style="grid-column:1 / span 5">
+        <p class="eyebrow dk"><span class="ring sm">09</span>Team Tool Kit</p>
+        <ul class="d" style="margin-top:4mm"><li>Note from your Colleagues</li><li>Team Collage</li><li>Commitment Charter</li></ul>
       </div>
-      <div class="ph" style="height:46mm"><img class="photo" src="photos/group-circle-court.jpg" alt=""></div>
+      <div style="grid-column:6 / span 7">
+        <p class="team"><b>T</b>ogether <b>E</b>veryone <b>A</b>chieves <b>M</b>ore</p>
+      </div>
     </div>
-    <div class="quote" style="margin-top:8mm">Together Everyone Achieves More</div>
   </div>
-  <div style="position:absolute;left:0;right:0;bottom:0;height:52mm;background:var(--navy);color:#fff;padding:9mm 16mm">
-    <p class="eyebrow" style="color:var(--gold)">Bookings</p>
-    <p style="color:#fff;font-size:15pt;font-weight:800;margin-top:2mm">The Motivation Company</p>
-    <p style="color:rgba(255,255,255,.8);margin-top:3mm;font-size:10pt">bookings@themotivationcompany.co.za &nbsp;·&nbsp; 082 060 9888 &nbsp;·&nbsp; www.themotivationcompany.co.za</p>
-    <p style="color:rgba(255,255,255,.55);margin-top:3mm;font-size:8pt">Company reg 2013/049231/07</p>
+  <div class="foot"><span><b>TMC</b> · Motivational Team Building</span><span>5</span></div>
+</section>
+
+<!-- 6 BACK COVER -->
+<section class="page back">
+  <div class="tex"><img src="photos/team-huddle.jpg" alt=""></div>
+  <div class="frame"></div>
+  <div class="inner">
+    <div style="margin-top:62mm;background:#fff;border-radius:4px;padding:2mm 3.5mm"><img src="tmc-logo.webp" alt="The Motivation Company" style="height:11mm;display:block"></div>
+    <p style="margin-top:30mm;color:var(--gold);font-size:30pt;line-height:1.1;font-weight:800;letter-spacing:-0.02em">Book a team building session</p>
+    <div style="margin-top:14mm;display:flex;flex-direction:column;gap:4mm">
+      <p style="color:#fff;font-size:14pt">bookings@themotivationcompany.co.za</p>
+      <p style="color:#fff;font-size:14pt">082 060 9888</p>
+      <p style="color:#fff;font-size:14pt">www.themotivationcompany.co.za</p>
+    </div>
+    <p style="margin-top:auto;margin-bottom:10mm;color:rgba(255,255,255,.6);font-size:8pt;letter-spacing:.1em">The Motivation Company · Company reg 2013/049231/07</p>
   </div>
 </section>
 </body>

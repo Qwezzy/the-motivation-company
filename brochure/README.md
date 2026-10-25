@@ -4,7 +4,7 @@ Source for the private PDF released by `/team-building`: after the answers are e
 
 - `brochure.html`: A4 layout (TMC navy #232A60 / gold #FFCB05, Inter). Content is only the client's
   "Motivational Team Building Brochure" (typos fixed) plus two client-approved quotes
-  ("No one of us is better than all of us together" on page 2, "Together Everyone Achieves More" on page 5).
+  ("No one of us is better than all of us together" as the navy band on page 2, "Together Everyone Achieves More" as type on page 5). 6 pages; CDO design pass v2..
 - `photos/`: client-supplied photos (WhatsApp, 23 Oct 2026), auto-oriented and auto-contrast only.
 - Output: `private/brochure/TMC-Team-Building-Brochure.pdf` (NOT in `public/`; only sent by email).
 
