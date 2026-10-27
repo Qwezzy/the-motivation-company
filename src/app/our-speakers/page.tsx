@@ -2,16 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
 import SpeakersGrid from "@/components/SpeakersGrid";
-import { bookSpeakerHref, site } from "@/lib/site";
+import { bookSpeakerHref } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Our Speakers",
-  description: `Our Speakers — SCAMP graduate speakers and roster preview from ${site.company}.`,
-};
+export const metadata: Metadata = pageMeta({
+  title: "Motivational Speakers | SCAMP Graduates | The Motivation Company",
+  description:
+    "Meet SCAMP-trained motivational speakers from The Motivation Company. Book a speaker for your conference, school or corporate event in South Africa.",
+  path: "/our-speakers",
+});
 
 export default function OurSpeakersPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd("Our Speakers", "/our-speakers")} />
       <section className="bg-navy text-white">
         <div className="container-narrow section-pad !py-16">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">

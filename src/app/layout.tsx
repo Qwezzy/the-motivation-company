@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
 import { site, teamBuildingNav } from "@/lib/site";
 import { teamBuildingEnabled } from "@/lib/brochureGate";
+import { OG_IMAGE, SITE_URL, siteJsonLd } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,19 +15,33 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.themotivationcompany.co.za"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: `${site.company} | Motivation Hub`,
+    default: "The Motivation Company | Motivational Speakers South Africa",
     template: `%s | ${site.company}`,
   },
   description:
-    "The Motivation Company — Ultimate Motivation Hub in South Africa and Beyond. Book a speaker for keynotes, MC, facilitation, and training. Hector Mathabe is Principal.",
+    "Book motivational speakers, MCs and team building facilitators in South Africa. Keynotes, programme directors and training. Principal: Hector Mathabe.",
+  applicationName: site.company,
+  authors: [{ name: site.company, url: `${SITE_URL}/` }],
+  creator: site.company,
+  publisher: site.company,
+  formatDetection: { telephone: false },
+  robots: { index: true, follow: true },
   openGraph: {
     title: site.company,
     description: site.tagline,
     siteName: site.company,
     locale: "en_ZA",
     type: "website",
+    url: `${SITE_URL}/`,
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.company,
+    description: site.tagline,
+    images: [OG_IMAGE.url],
   },
 };
 
@@ -40,6 +56,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} flex min-h-screen flex-col font-sans`}
       >
+        <JsonLd data={siteJsonLd()} />
         <Header extraNav={extraNav} />
         <main className="flex-1">{children}</main>
         <Footer extraNav={extraNav} />

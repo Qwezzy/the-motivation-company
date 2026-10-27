@@ -46,7 +46,37 @@ function tableHtml(rows: [string, string][]): string {
 const fail = (status: number, error: string, extra: Record<string, unknown> = {}) =>
   NextResponse.json({ ok: false, error, ...extra }, { status });
 
+/* CORS: only the Xneelo-hosted static copy of the site may call this cross-origin. */
+const ALLOWED_ORIGINS = new Set([
+  "https://themotivationcompany.co.za",
+  "https://www.themotivationcompany.co.za",
+  "http://themotivationcompany.co.za",
+  "http://www.themotivationcompany.co.za",
+]);
+
+function corsHeaders(req: Request): Record<string, string> {
+  const origin = req.headers.get("origin") || "";
+  if (!ALLOWED_ORIGINS.has(origin)) return { Vary: "Origin" };
+  return {
+    "Access-Control-Allow-Origin": origin,
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Max-Age": "86400",
+    Vary: "Origin",
+  };
+}
+
+export function OPTIONS(req: Request) {
+  return new NextResponse(null, { status: 204, headers: corsHeaders(req) });
+}
+
 export async function POST(req: Request) {
+  const res = await handlePost(req);
+  for (const [k, v] of Object.entries(corsHeaders(req))) res.headers.set(k, v);
+  return res;
+}
+
+async function handlePost(req: Request): Promise<Response> {
   if (!teamBuildingEnabled()) return fail(404, "not_found");
 
   const ip =

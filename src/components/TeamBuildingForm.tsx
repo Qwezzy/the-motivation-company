@@ -14,6 +14,9 @@ import {
   type FieldErrors,
 } from "@/lib/teamBuilding";
 
+/** Empty on Vercel (same origin). Set for the static Xneelo export so the form posts to the Vercel API. */
+const API_BASE = (process.env.NEXT_PUBLIC_API_BASE || "").replace(/\/$/, "");
+
 type Status = "idle" | "sending" | "sent" | "error";
 
 const inputCls =
@@ -99,7 +102,7 @@ export default function TeamBuildingForm() {
     }
     setStatus("sending");
     try {
-      const res = await fetch("/api/team-building", {
+      const res = await fetch(`${API_BASE}/api/team-building`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(f),
@@ -112,7 +115,9 @@ export default function TeamBuildingForm() {
         downloadUrl?: string;
       };
       if (res.ok && data.ok && data.sent && data.downloadUrl) {
-        setDownloadUrl(data.downloadUrl);
+        setDownloadUrl(
+          /^https?:\/\//.test(data.downloadUrl) ? data.downloadUrl : `${API_BASE}${data.downloadUrl}`,
+        );
         setStatus("sent");
         return;
       }

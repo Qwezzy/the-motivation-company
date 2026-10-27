@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { images, site } from "@/lib/site";
+import { altFor, images, site } from "@/lib/site";
 
 export default function GalleryStrip() {
   return (
@@ -35,7 +35,7 @@ export default function GalleryStrip() {
             >
               <Image
                 src={src}
-                alt={`${site.company} event gallery ${i + 1}`}
+                alt={altFor(src, `${site.company} event gallery ${i + 1}`)}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 className="object-cover"

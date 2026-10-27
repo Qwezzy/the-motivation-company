@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Book a Speaker",
-  description: `Book a speaker with ${site.company} — enquiry for keynotes, MC, facilitation, and training.`,
-};
+export const metadata: Metadata = pageMeta({
+  title: "Book a Motivational Speaker | Contact The Motivation Company",
+  description:
+    "Book a motivational speaker, MC or facilitator. Email bookings@themotivationcompany.co.za or call 082 060 9888 with your date, audience and format.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd("Book a Speaker", "/contact")} />
       <section className="bg-navy text-white">
         <div className="container-narrow section-pad !py-16">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">

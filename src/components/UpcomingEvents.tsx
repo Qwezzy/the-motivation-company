@@ -39,7 +39,7 @@ function EventCard({ event }: { event: UpcomingEvent }) {
         <div className="relative aspect-[4/5] w-full shrink-0 bg-navy/5">
           <Image
             src={event.image}
-            alt={event.title}
+            alt={`${event.title} event flyer`}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover object-top"

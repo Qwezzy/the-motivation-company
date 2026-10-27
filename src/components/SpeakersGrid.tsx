@@ -50,7 +50,7 @@ export default function SpeakersGrid({
               <div className="relative aspect-[3/4] w-full bg-navy/5">
                 <Image
                   src={speaker.image}
-                  alt={speaker.name}
+                  alt={`${speaker.name}, ${speaker.role} speaker`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover object-top transition duration-300 group-hover:scale-[1.02]"
