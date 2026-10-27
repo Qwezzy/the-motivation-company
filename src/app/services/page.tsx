@@ -3,16 +3,21 @@ import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
 import { bookSpeakerHref, site, teamBuildingHref } from "@/lib/site";
 import { teamBuildingEnabled } from "@/lib/brochureGate";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services",
-  description: `Energy, Synergy, and Strategy with ${site.company} — motivational speaking, facilitation, MC, and training.`,
-};
+export const metadata: Metadata = pageMeta({
+  title: "Motivational Talks, Team Building & MC | The Motivation Company",
+  description:
+    "Motivational talks, team building, strategic planning, MC and programme director services, and customer service training for South African organisations.",
+  path: "/services",
+});
 
 export default function ServicesPage() {
   const showTeamBuilding = teamBuildingEnabled();
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd("Services", "/services")} />
       <section className="bg-navy text-white">
         <div className="container-narrow section-pad !py-16">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">

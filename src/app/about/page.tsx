@@ -3,15 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
 import { bookSpeakerHref, images, site } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About",
-  description: `About ${site.company} — the Ultimate Motivation Hub in South Africa and Beyond.`,
-};
+export const metadata: Metadata = pageMeta({
+  title: "About The Motivation Company | Motivation Hub, South Africa",
+  description:
+    "South African motivation training hub: a roster of speakers and facilitators with Hector Mathabe as Principal. Our vision, mission and values.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd("About", "/about")} />
       <section className="bg-navy text-white">
         <div className="container-narrow section-pad !py-16">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">

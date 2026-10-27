@@ -3,21 +3,27 @@ import Image from "next/image";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
 import { bookSpeakerHref, images, site } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, courseJsonLd, pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Training",
-  description: `Effective Public Speaking Course modules with ${site.company} — confidence, voice, body language, slides, structure, and presentation secrets.`,
-};
+export const metadata: Metadata = pageMeta({
+  title: "Public Speaking Course South Africa | The Motivation Company",
+  description:
+    "Effective Public Speaking Course: seven modules on personality style, voice, body language, slides, structure and delivery. Book a cohort for your team.",
+  path: "/training",
+});
 
 const stripAlts = [
-  "The Motivation Company Training Class",
-  "The Motivation Company Presentation",
-  "The Motivation Company Effective Public Speaking Course",
+  "Effective Public Speaking Course training session in a conference room",
+  "Presentation to delegates in a lecture theatre",
+  "Speaker presenting on stage to a full auditorium",
 ] as const;
 
 export default function TrainingPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd("Training", "/training")} />
+      <JsonLd data={courseJsonLd()} />
       <section className="bg-navy text-white">
         <div className="container-narrow section-pad !py-16">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">

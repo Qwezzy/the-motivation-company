@@ -46,6 +46,31 @@ export const images = {
 } as const;
 
 /**
+ * Descriptive alt text per image (SEO + accessibility). Describes what is in
+ * the photo only; does not name people we have not confirmed.
+ */
+export const imageAlts: Record<string, string> = {
+  "/images/tmc-speak.webp": "Motivational speaker in a navy suit and gold tie speaking into a microphone",
+  "/images/tmc-host.webp": "Speaker portrait in a black leather jacket, MC and programme director",
+  "/images/tmc-facilitate.webp": "Outdoor team building session with delegates seated in groups on a lawn",
+  "/images/tmc-gallery-01.webp": "Delegates taking part in an interactive team building exercise",
+  "/images/tmc-gallery-02.webp": "Smiling speaker portrait",
+  "/images/tmc-gallery-03.webp": "Training session in a conference room with delegates at U-shaped tables",
+  "/images/tmc-gallery-04.webp": "Motivational speaker with a microphone on stage",
+  "/images/tmc-gallery-05.webp": "Delegates working at tables during a facilitated workshop",
+  "/images/tmc-gallery-06.webp": "Facilitator and delegates in a training room",
+  "/images/tmc-gallery-07.webp": "Outdoor team building group seated on the grass",
+  "/images/tmc-gallery-08.webp": "Speaker portrait in a black leather jacket",
+  "/images/tmc-gallery-09.webp": "Speaker portrait in a leather jacket with hand on chin",
+  "/images/tmc-gallery-10.webp": "Speaker in a navy suit at a corporate event in front of a branded backdrop",
+};
+
+/** Alt for an image path, with a fallback. */
+export function altFor(src: string, fallback: string): string {
+  return imageAlts[src] ?? fallback;
+}
+
+/**
  * Speakers mock (4-card SCAMP graduate grid).
  * Press/org portraits = mock only; commercial use needs permission.
  * Attribution lives in PR description — do not claim image rights.

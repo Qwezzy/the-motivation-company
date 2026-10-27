@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import CtaBanner from "@/components/CtaBanner";
-import { images, site } from "@/lib/site";
+import { altFor, images, site } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Gallery",
-  description: `Event gallery from ${site.company} — stage and audience moments.`,
-};
+export const metadata: Metadata = pageMeta({
+  title: "Event Gallery: Talks & Team Building | The Motivation Company",
+  description:
+    "Photos from The Motivation Company engagements: motivational talks, training sessions, outdoor team building and speakers on stage.",
+  path: "/gallery",
+});
 
 export default function GalleryPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd("Gallery", "/gallery")} />
       <section className="bg-navy text-white">
         <div className="container-narrow section-pad !py-16">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">
@@ -40,7 +45,7 @@ export default function GalleryPage() {
               >
                 <Image
                   src={src}
-                  alt={`${site.company} event gallery ${i + 1}`}
+                  alt={altFor(src, `${site.company} event gallery ${i + 1}`)}
                   fill
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   className="object-cover"

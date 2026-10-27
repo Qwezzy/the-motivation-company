@@ -1,12 +1,23 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import CtaBanner from "@/components/CtaBanner";
 import UpcomingEvents from "@/components/UpcomingEvents";
-import { bookSpeakerHref, images, profilePdf, site } from "@/lib/site";
+import { altFor, bookSpeakerHref, images, profilePdf, site } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { eventsJsonLd, pageMeta } from "@/lib/seo";
+
+export const metadata: Metadata = pageMeta({
+  title: "Motivational Speakers South Africa | The Motivation Company",
+  description:
+    "Book motivational speakers, MCs and team building facilitators in South Africa. Keynotes, programme directors and training. Principal: Hector Mathabe.",
+  path: "/",
+});
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={eventsJsonLd()} />
       {/* 1. Hero — hub positioning */}
       <section className="relative overflow-hidden bg-navy text-white">
         <div className="absolute inset-0" aria-hidden>
@@ -237,7 +248,7 @@ export default function HomePage() {
               >
                 <Image
                   src={src}
-                  alt={`${site.company} in the room ${i + 1}`}
+                  alt={altFor(src, `${site.company} in the room ${i + 1}`)}
                   fill
                   sizes="(max-width: 640px) 50vw, 33vw"
                   className="object-cover"
